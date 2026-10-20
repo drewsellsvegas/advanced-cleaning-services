@@ -1,0 +1,25 @@
+---
+import { withBase } from '../../lib/paths';
+import Icon from './Icon.astro';
+import { renderInline } from '../../lib/text';
+import { showOptional } from '../../lib/placeholder';
+// Area card (map-pin tile, name, summary). Same one-link-per-card mechanics as ServiceCard: the H3 link's ::after covers the card.
+interface Props {
+  area: { slug: string; name: string; cardSummary: string };
+  level?: 2 | 3 | 4;
+  index?: number;
+  reveal?: boolean;
+}
+const { area, level = 3, index = 0, reveal = true } = Astro.props;
+const Heading = `h${level}` as 'h3';
+---
+<article class="card-service h-full" data-reveal={reveal ? '' : undefined} style={`--i:${index}`}>
+  <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-gold-50 text-gold-700">
+    <Icon name="map-pin" size={24} />
+  </div>
+  <Heading class="mb-2"><a href={withBase(`/service-areas/${area.slug}`)}>{area.name}</a></Heading>
+  {showOptional(area.cardSummary) && <p class="text-muted line-clamp-3" set:html={renderInline(area.cardSummary)} />}
+  <div class="btn btn-link mt-4 w-fit">
+    <span>Learn more<span class="sr-only"> about cleaning in {area.name}</span></span><Icon name="arrow-right" size={20} class="btn-arrow" />
+  </div>
+</article>

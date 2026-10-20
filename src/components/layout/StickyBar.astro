@@ -1,0 +1,23 @@
+---
+import { withBase } from '../../lib/paths';
+import Button from '../ui/Button.astro';
+import { telHref, smsHref, callAria, textAria } from '../../lib/contact';
+
+// Sticky mobile bottom bar (PLAN 3.14), below lg. Always visible, no motion.
+// Body gets static padding-bottom in global.css so the footer is never covered.
+interface Props {
+  path?: string;
+  smsMessage?: string;
+}
+const { path = '/', smsMessage } = Astro.props;
+const quoteHref = path === '/free-estimate' ? '#composer' : withBase('/free-estimate');
+const item = 'h-[52px] min-h-[52px] flex-1 flex-col gap-0.5 rounded-md px-0 text-[13px] leading-none';
+---
+import { withBase } from '../../lib/paths';
+<nav id="bottom-bar" aria-label="Quick contact" data-menu-inert class="bottom-bar fixed inset-x-0 bottom-0 z-40 bg-white lg:hidden">
+  <div role="group" aria-label="Contact options" class="flex gap-2 px-3 pb-[calc(8px+env(safe-area-inset-bottom))] pt-2">
+    <Button variant="outline" href={telHref()} icon="phone" aria-label={callAria('Call')} class={item}>Call</Button>
+    <Button variant="primary" href={smsHref(smsMessage)} icon="camera" aria-label={textAria('Text Photos')} aria-describedby="sms-hint" class={item}>Text Photos</Button>
+    <Button variant="dark" href={quoteHref} icon="clipboard-check" class={item}>Free Quote</Button>
+  </div>
+</nav>

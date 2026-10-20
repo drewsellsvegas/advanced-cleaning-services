@@ -1,0 +1,26 @@
+---
+import { withBase } from '../../lib/paths';
+import Icon from './Icon.astro';
+import { renderInline } from '../../lib/text';
+import { showOptional } from '../../lib/placeholder';
+// Service card (PLAN 3.9). One link per card: the H3 contains the <a>, whose ::after stretches over the card.
+interface Props {
+  service: { slug: string; name: string; icon: string; cardSummary: string };
+  level?: 2 | 3 | 4;
+  /** Stagger index for the reveal (column index within the row). */
+  index?: number;
+  reveal?: boolean;
+}
+const { service, level = 3, index = 0, reveal = true } = Astro.props;
+const Heading = `h${level}` as 'h3';
+---
+<article class="card-service h-full" data-reveal={reveal ? '' : undefined} style={`--i:${index}`}>
+  <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-gold-50 text-gold-700">
+    <Icon name={service.icon} size={24} />
+  </div>
+  <Heading class="mb-2"><a href={withBase(`/services/${service.slug}`)}>{service.name}</a></Heading>
+  {showOptional(service.cardSummary) && <p class="text-muted line-clamp-2" set:html={renderInline(service.cardSummary)} />}
+  <div class="btn btn-link mt-4 w-fit">
+    <span>Learn more<span class="sr-only"> about {service.name.toLowerCase()}</span></span><Icon name="arrow-right" size={20} class="btn-arrow" />
+  </div>
+</article>

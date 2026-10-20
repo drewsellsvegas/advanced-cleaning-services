@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+import { renderInline } from '../../lib/text';
+// Why-us feature card (PLAN 3.9): cream fill, no border, no hover effect.
+interface Props {
+  icon: string;
+  title: string;
+  text: string;
+  level?: 2 | 3 | 4;
+  index?: number;
+  reveal?: boolean;
+  /** Use on a cream section: swaps the fill to white so the card stays visible. */
+  onCream?: boolean;
+}
+const { icon, title, text, level = 3, index = 0, reveal = true, onCream = false } = Astro.props;
+const Heading = `h${level}` as 'h3';
+---
+<div class:list={['rounded-lg p-6', onCream ? 'bg-white' : 'bg-cream']} data-reveal={reveal ? '' : undefined} style={`--i:${index}`}>
+  <Icon name={icon} size={28} class="mb-4 text-gold-700" />
+  <Heading class="mb-2">{title}</Heading>
+  <p class="text-muted" set:html={renderInline(text)} />
+</div>

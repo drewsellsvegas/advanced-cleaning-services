@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/page/PageIntro.astro';
+import Container from '../components/ui/Container.astro';
+import Section from '../components/ui/Section.astro';
+import { phoneDisplay, telHref, callAria } from '../lib/contact';
+import { renderInline } from '../lib/text';
+import { buildDate } from '../lib/schema';
+
+// Privacy (PLAN 2.3 / task 28). Plain prose. The storage sentence is a placeholder (Q26) and stays visible in
+// production on purpose: it is required copy, so the launch audit (task 54) must flag it until the client answers.
+const title = 'Privacy Policy | Advanced Cleaning';
+const description = 'How Advanced Cleaning Services handles information when you visit this site, call or text us in Las Vegas.';
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Privacy Policy', path: '/privacy' }
+];
+const updated = new Date(`${buildDate()}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+const sections = [
+  {
+    h: 'What this site collects',
+    p: [
+      'This site does not collect personal information directly. It has no accounts, and none of its forms send data to a server.',
+      'The estimate helper on the [free estimate page](/free-estimate) builds a text message in your browser. Nothing you type there is sent from the page. Your phone opens its own messaging app with the message ready, and you decide whether to send it.',
+      'The site does not use cookies or analytics tools.'
+    ]
+  },
+  {
+    h: 'Calls and texts',
+    p: [
+      'When you call or text us, we receive your phone number and whatever you choose to share, such as photos, your ZIP code and a description of the job. We use that to reply with an estimate and to schedule the work.',
+      '[PLACEHOLDER: how Miguel stores customer texts and photos]'
+    ]
+  },
+  {
+    h: 'Hosting',
+    p: ['This site is hosted on Cloudflare, which may log standard request data such as IP address and browser type to deliver and protect the site.']
+  }
+];
+---
+<BaseLayout title={title} description={description} path="/privacy" breadcrumbs={crumbs}>
+  <PageIntro crumbs={crumbs} h1="Privacy Policy" lead={`Last updated: ${updated}`} tight />
+  <Section tone="white" padding="none" class="pb-16 lg:pb-24" aria-label="Privacy policy text">
+    <Container>
+      <div class="max-w-[68ch] space-y-10">
+        {sections.map((s) => (
+          <div>
+            <h2 class="mb-4">{s.h}</h2>
+            <div class="space-y-4">{s.p.map((t) => <p set:html={renderInline(t)} />)}</div>
+          </div>
+        ))}
+        <div>
+          <h2 class="mb-4">Contact</h2>
+          <p>Questions about privacy? Call Miguel at <a class="link" href={telHref()} aria-label={callAria(phoneDisplay)}>{phoneDisplay}</a>.</p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>

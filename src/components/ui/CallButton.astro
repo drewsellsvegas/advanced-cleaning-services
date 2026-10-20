@@ -1,0 +1,12 @@
+---
+import Button from './Button.astro';
+import { telHref, callAria } from '../../lib/contact';
+interface Props {
+  variant?: 'primary' | 'dark' | 'outline' | 'ghost-light' | 'link';
+  size?: 'sm' | 'md' | 'lg';
+  label?: string;
+  class?: string;
+}
+const { variant = 'dark', size = 'md', label = 'Call Now', class: className } = Astro.props;
+---
+<Button variant={variant} size={size} href={telHref()} icon="phone" aria-label={callAria(label)} class={className}>{label}</Button>

@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/page/PageIntro.astro';
+import Container from '../../components/ui/Container.astro';
+import Section from '../../components/ui/Section.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+import ServiceCard from '../../components/ui/ServiceCard.astro';
+import TextEstimatePanel from '../../components/home/TextEstimatePanel.astro';
+import CtaBand from '../../components/home/CtaBand.astro';
+import { getServicesByGroup } from '../../lib/data';
+
+// Services hub (PLAN 2.3 / task 25). Title, meta and H1 are the exact strings from 2.3.
+const title = 'Cleaning Services in Las Vegas | Advanced Cleaning';
+const description =
+  'Carpet, rug, upholstery, tile, grout, water extraction and exterior cleaning in Las Vegas. Call or text 702-350-5775 for a free estimate.';
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Services', path: '/services' }
+];
+const groups = await getServicesByGroup();
+---
+<BaseLayout title={title} description={description} path="/services" breadcrumbs={crumbs}>
+  <PageIntro
+    crumbs={crumbs}
+    h1="Cleaning Services in Las Vegas"
+    lead="Twelve ways we help Las Vegas homeowners keep their homes clean, inside and out."
+    tight
+  />
+  {groups.map((g, gi) => (
+    <Section tone={gi % 2 === 0 ? 'cream' : 'white'} labelledby={`group-${gi}`}>
+      <Container>
+        <SectionHeader id={`group-${gi}`} heading={g.group} />
+        <div class="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
+          {g.services.map((s, i) => <ServiceCard service={s} index={i % 3} />)}
+        </div>
+      </Container>
+    </Section>
+  ))}
+  <TextEstimatePanel tone="white" heading="Not Sure What You Need? Text Us a Photo" />
+  <CtaBand />
+</BaseLayout>

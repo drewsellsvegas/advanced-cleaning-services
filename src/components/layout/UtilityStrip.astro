@@ -1,0 +1,32 @@
+---
+import Icon from '../ui/Icon.astro';
+import site from '../../data/site.json';
+import { showOptional } from '../../lib/placeholder';
+import { renderInline } from '../../lib/text';
+import { telHref, phoneDisplay, callAria } from '../../lib/contact';
+// Utility strip (PLAN 3.11): fixed 36px, not sticky, no motion.
+const hours = site.hours.display;
+const showHours = showOptional(hours);
+---
+<aside aria-label="Service area and phone" data-menu-inert class="h-9 bg-night text-small leading-none text-night-text">
+  <div class="container-site flex h-full items-center justify-center md:justify-between">
+    <p class="flex items-center gap-x-4 whitespace-nowrap">
+      <span class="flex items-center gap-1.5">
+        <Icon name="map-pin" size={16} class="text-gold-500" />Serving the entire Las Vegas Valley
+      </span>
+      {showHours && (
+        <span class="hidden items-center gap-1.5 md:flex">
+          <span aria-hidden="true" class="text-night-muted">·</span>
+          <Icon name="clock" size={16} class="text-gold-500" /><span set:html={renderInline(hours)} />
+        </span>
+      )}
+    </p>
+    <a
+      href={telHref()}
+      aria-label={callAria(`Call or text ${phoneDisplay}`)}
+      class="hidden items-center gap-1.5 text-white hover:underline md:flex"
+    >
+      <Icon name="phone" size={16} class="text-gold-500" />Call or text {phoneDisplay}
+    </a>
+  </div>
+</aside>

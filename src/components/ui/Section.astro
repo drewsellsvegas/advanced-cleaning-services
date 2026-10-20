@@ -1,0 +1,26 @@
+---
+// Page section with a tone (white | cream | night) and the vertical padding from PLAN 3.6.
+interface Props {
+  tone?: 'white' | 'cream' | 'night';
+  id?: string;
+  /** "default" = 64/96/112px, "hero" = 40/64 base, 64/96 lg, "none" = no vertical padding. */
+  padding?: 'default' | 'hero' | 'none';
+  class?: string;
+  /** id of the heading that labels this section (adds aria-labelledby). */
+  labelledby?: string;
+}
+const { tone = 'white', id, padding = 'default', class: className, labelledby, ...rest } = Astro.props;
+const tones = {
+  white: 'bg-white text-ink',
+  cream: 'bg-cream text-ink',
+  night: 'bg-night text-night-text on-night'
+};
+const paddings = {
+  default: 'py-16 md:py-24 lg:py-28',
+  hero: 'pt-10 pb-16 lg:pt-16 lg:pb-24',
+  none: ''
+};
+---
+<section id={id} aria-labelledby={labelledby} class:list={[tones[tone], paddings[padding], className]} {...rest}>
+  <slot />
+</section>

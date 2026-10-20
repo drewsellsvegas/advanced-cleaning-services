@@ -1,0 +1,675 @@
+[
+  {
+    "slug": "las-vegas",
+    "name": "Las Vegas",
+    "schemaType": "City",
+    "containedIn": "Clark County, Nevada",
+    "isMain": true,
+    "order": 1,
+    "mainKeyword": "carpet cleaners in Las Vegas NV",
+    "supportKeywords": [
+      "carpet cleaning near me Las Vegas",
+      "tile and grout cleaning Las Vegas",
+      "upholstery cleaning Las Vegas NV",
+      "pressure washing Las Vegas"
+    ],
+    "title": "Carpet Cleaners in Las Vegas, NV | Advanced Cleaning",
+    "metaDescription": "Carpet, tile, upholstery and exterior cleaning for homes across Las Vegas. Call or text 702-350-5775 for a free estimate.",
+    "h1": "Carpet & Tile Cleaning in Las Vegas, NV",
+    "localHeading": "Cleaning for Every Kind of Las Vegas Home",
+    "cardSummary": "Carpet, tile, upholstery and exterior cleaning for Las Vegas homes, from Downtown to The Lakes, Desert Shores and Peccole Ranch.",
+    "heroIntro": "Looking for carpet cleaners in Las Vegas NV who treat every surface in your home with care? Advanced Cleaning Services handles carpet, tile, grout, upholstery, rugs and outdoor concrete for households throughout the city. Send Miguel a few photos and ask for your free estimate.",
+    "smsMessage": "Hi Miguel, I'd like a free estimate for a home in Las Vegas. I'll send photos of what needs cleaning.",
+    "servicesIntro": "Most people in the city start with [carpet cleaning](/services/carpet-cleaning), and floors, couches and spills follow close behind. These six services are the ones we feature for Las Vegas homes. Each page explains what a visit includes, how the work is done and what to expect, so you can choose the right one or [ask for a free estimate](/free-estimate) by text.",
+    "local": [
+      "Las Vegas is the largest city in Nevada and the county seat of Clark County, so the homes here come in every shape and size. Downtown Las Vegas, The Lakes, Desert Shores and Peccole Ranch each have their own mix of floor plans and flooring. We do not assume anything about your rooms until we see your photos, because a house in one neighborhood can look nothing like the one down the road.",
+      "The desert, however, reaches every address in the same way. Fine dust blows in through doors and windows and settles deep in carpet pile, while very hard water leaves a pale mineral film on tile and around fixtures. Hot summers keep people indoors, and monsoon storms can carry mud onto patios and walkways. [Tile cleaning](/services/tile-cleaning) and [pressure washing](/services/pressure-washing) deal with the hard surfaces that take the brunt of it.",
+      "The city also stretches into the northwest and west. [Centennial Hills](/service-areas/centennial-hills) sits in the northwest part of Las Vegas, and [Summerlin](/service-areas/summerlin) is partly inside the city limits, so each has its own page with details for those homes. Henderson, North Las Vegas and the rest of the Valley are covered too, and you can browse them from the nearby areas below.",
+      "Because Las Vegas is so large, we keep the first step simple. Tell Miguel which rooms need attention, what the floors are made of and which part of town you live in, and he works out a plan from there. If you cannot tell which service fits, describe the problem in your own words and we will point you toward the right page."
+    ],
+    "neighborhoods": [
+      "Downtown Las Vegas",
+      "The Lakes",
+      "Desert Shores",
+      "Peccole Ranch",
+      "Centennial Hills",
+      "Summerlin"
+    ],
+    "estimateCopy": "A free estimate in Las Vegas takes only a few minutes of your time. Photograph each room or surface that needs work, open a text to Miguel from the button below and attach the pictures along with your ZIP code. He reviews what you send and replies with the estimate. Prefer to talk it through? Call or text 702-350-5775 and ask any question first.",
+    "faq": [
+      {
+        "q": "Do you serve all of Las Vegas?",
+        "a": "Yes. We work across the city, including Downtown Las Vegas, The Lakes, Desert Shores, Peccole Ranch and Centennial Hills, as well as the wider Las Vegas Valley. Include your ZIP code when you text and Miguel will confirm your address is one we can reach. If you are unsure, call or text before sending any photos."
+      },
+      {
+        "q": "How quickly can I get an estimate in Las Vegas?",
+        "a": "Estimates begin with photos. Text a few pictures of the carpet, tile or outdoor surface along with your ZIP code, and Miguel will look them over and write back with your estimate. If you only need a quick answer to a simple question, a phone call is often the fastest route, and you are welcome to call or text either way."
+      },
+      {
+        "q": "Do you clean apartments and condos in Las Vegas?",
+        "a": "We can quote carpet, tile and upholstery cleaning for apartments and condos as well as houses. Mention any gate code, building access or parking details in your message so the visit goes smoothly. If you are a landlord or property manager, say so in your first text and Miguel will explain how he can help."
+      },
+      {
+        "q": "Which of your services are most requested in Las Vegas?",
+        "a": "We do not publish a ranking, but the six on this page are the ones we feature for Las Vegas homes: [carpet cleaning](/services/carpet-cleaning), [tile cleaning](/services/tile-cleaning), [upholstery cleaning](/services/upholstery-cleaning), [pet urine and odor removal](/services/pet-urine-odor-removal), [pressure washing](/services/pressure-washing) and [stain removal](/services/stain-removal). Not sure which you need? Text us a photo."
+      }
+    ],
+    "popularServices": [
+      "carpet-cleaning",
+      "tile-cleaning",
+      "upholstery-cleaning",
+      "pet-urine-odor-removal",
+      "pressure-washing",
+      "stain-removal"
+    ],
+    "nearbyAreas": [
+      "henderson",
+      "summerlin",
+      "north-las-vegas"
+    ],
+    "ctaHeadline": "Ready for a Cleaner Las Vegas Home?"
+  },
+  {
+    "slug": "henderson",
+    "name": "Henderson",
+    "schemaType": "City",
+    "containedIn": "Clark County, Nevada",
+    "isMain": false,
+    "order": 2,
+    "mainKeyword": "carpet cleaning Henderson NV",
+    "supportKeywords": [
+      "tile and grout cleaning Henderson",
+      "upholstery cleaning Henderson",
+      "pressure washing Henderson",
+      "Green Valley carpet cleaning"
+    ],
+    "title": "Carpet Cleaning Henderson, NV | Advanced Cleaning",
+    "metaDescription": "Carpet, tile, upholstery and exterior cleaning in Henderson, from Green Valley to Inspirada. Call or text 702-350-5775 for a free estimate.",
+    "h1": "Carpet & Tile Cleaning in Henderson, NV",
+    "localHeading": "Cleaning Henderson Homes, Old and New",
+    "cardSummary": "Carpet, tile, grout, upholstery and exterior cleaning in Henderson, from Green Valley to Inspirada and Lake Las Vegas.",
+    "heroIntro": "Henderson homeowners who want carpet cleaning Henderson NV can call on Advanced Cleaning Services for floors, furniture and outdoor surfaces. Miguel works with older streets and newer communities alike, and he starts every job by looking at your photos. Ask for a free estimate whenever you are ready.",
+    "smsMessage": "Hi Miguel, I'd like a free estimate for a home in Henderson. I'll send photos of what needs cleaning.",
+    "servicesIntro": "Henderson households tend to ask about floors first. [Carpet cleaning](/services/carpet-cleaning) and [tile cleaning](/services/tile-cleaning) come up often, with [grout cleaning](/services/grout-cleaning) close behind for kitchens and bathrooms, while driveways and patios round out the list. The six services below are the ones we feature for the city, and each page walks through its process, what is included and what to expect from the visit.",
+    "local": [
+      "Henderson is the second-largest city in Nevada, set southeast of Las Vegas, and it has grown into a patchwork of distinct communities. Green Valley is established, while Green Valley Ranch, Seven Hills, MacDonald Ranch, Inspirada, Cadence and Lake Las Vegas each have their own look. That variety is exactly why we ask for photos first: your rooms, not your zip code, tell us what the job will involve.",
+      "Established homes and newer master-planned communities tend to need different attention. A longer-lived house may have carpet that has taken years of foot traffic, plus tile that has collected mineral film, so a careful look at the floor matters before anything is applied. Newer homes often have carpet and tile that still look fine at a glance but are already holding dust, which is easier to remove while it is fresh.",
+      "Everyone in the Valley deals with fine desert dust and very hard water, and Henderson is no exception. Dust settles into carpet and fabric, and hard water leaves a chalky film on tile and around fixtures. After the water dries, grout lines hold that residue, so a [tile and grout visit](/services/grout-cleaning) often makes the biggest visible change. Outside, [driveway cleaning](/services/driveway-cleaning) lifts the dust and tire marks that make a front entry look tired.",
+      "If you live in [Anthem](/service-areas/anthem), in the southern part of Henderson, that community has a page of its own with details for those homes. Whichever part of Henderson you call home, the next step is the same: send Miguel a few photos and your ZIP code, and he will reply with a plan and a free estimate."
+    ],
+    "neighborhoods": [
+      "Green Valley",
+      "Green Valley Ranch",
+      "Seven Hills",
+      "MacDonald Ranch",
+      "Inspirada",
+      "Cadence",
+      "Lake Las Vegas",
+      "Anthem"
+    ],
+    "estimateCopy": "Getting a quote for your Henderson home starts on your phone. Snap pictures of the floors, furniture or outdoor areas you want cleaned, then text them to Miguel with your ZIP code using the button below. He studies the photos and answers with a free estimate. If you would rather hear a voice first, reach us at 702-350-5775 by call or text and ask your questions before you decide.",
+    "faq": [
+      {
+        "q": "Do you serve all of Henderson, including Lake Las Vegas?",
+        "a": "Yes, we serve Henderson broadly, and that includes Lake Las Vegas along with Green Valley, Green Valley Ranch, Seven Hills, MacDonald Ranch, Inspirada and Cadence. Put your ZIP code in your message so Miguel can confirm the address is on his route. If anything about your location is unclear, call or text and he will sort it out."
+      },
+      {
+        "q": "Can you clean tile and grout in Henderson homes?",
+        "a": "Yes. Hard water leaves mineral film on tile, and grout lines soak up soil that mopping pushes around. Miguel can quote both from your photos, and [tile cleaning](/services/tile-cleaning) and [grout cleaning](/services/grout-cleaning) are often booked together. Send pictures of the kitchen, bathroom or entry floors that bother you most."
+      },
+      {
+        "q": "Do you offer pressure washing in Henderson?",
+        "a": "Yes, we pressure wash patios, walkways and similar outdoor surfaces in Henderson. Dust, hard water spots and storm mud build up quickly in the desert. See the [pressure washing](/services/pressure-washing) page for the surfaces we handle, then text a photo of the area and Miguel will quote it."
+      },
+      {
+        "q": "How do I get a quote for my Henderson home?",
+        "a": "Text Miguel a few photos of what needs cleaning, such as carpet, tile, a couch or a driveway, and include your ZIP code. He will review them and send back a free estimate, with no visit required first. Prefer a conversation? Phone the number on this page and describe the job in your own words."
+      }
+    ],
+    "popularServices": [
+      "carpet-cleaning",
+      "tile-cleaning",
+      "grout-cleaning",
+      "upholstery-cleaning",
+      "pressure-washing",
+      "driveway-cleaning"
+    ],
+    "nearbyAreas": [
+      "anthem",
+      "boulder-city",
+      "paradise"
+    ],
+    "ctaHeadline": "Give Your Henderson Home a Fresh Start"
+  },
+  {
+    "slug": "summerlin",
+    "name": "Summerlin",
+    "schemaType": "Place",
+    "containedIn": "Las Vegas Valley (west side), Nevada",
+    "isMain": false,
+    "order": 3,
+    "mainKeyword": "carpet cleaning Summerlin",
+    "supportKeywords": [
+      "Summerlin tile cleaning",
+      "upholstery cleaning Summerlin",
+      "pressure washing Summerlin",
+      "carpet cleaners near Summerlin"
+    ],
+    "title": "Carpet Cleaning Summerlin, NV | Advanced Cleaning",
+    "metaDescription": "Carpet, tile, upholstery and exterior cleaning for Summerlin homes near Red Rock. Call or text 702-350-5775 for a free estimate.",
+    "h1": "Carpet & Tile Cleaning in Summerlin, NV",
+    "localHeading": "Caring for Summerlin's Light Carpets and Stone Floors",
+    "cardSummary": "Careful carpet, tile, stone, rug and upholstery cleaning for Summerlin homes on the Valley's west side near Red Rock.",
+    "heroIntro": "Summerlin sits on the west side of the Valley near Red Rock Canyon, and its homes often pair pale carpet with tile and stone. For carpet cleaning Summerlin residents can trust with delicate finishes, Advanced Cleaning Services looks closely at each surface before choosing a method. Miguel gives every household a free estimate.",
+    "smsMessage": "Hi Miguel, I'd like a free estimate for a home in Summerlin. I'll send photos of what needs cleaning.",
+    "servicesIntro": "Light flooring shows everything, so Summerlin households tend to be particular about results. [Carpet cleaning](/services/carpet-cleaning) and [tile cleaning](/services/tile-cleaning) lead the list, followed by [rug cleaning](/services/rug-cleaning), upholstery, stain treatment and outdoor washing. Each service page below describes how the work is done and what a visit includes, which is useful when you want to know exactly what will touch your floors.",
+    "local": [
+      "Summerlin is a master-planned community on the west side of the Las Vegas Valley, near Red Rock Canyon. It is made up of many smaller neighborhoods, among them The Ridges, Red Rock Country Club, Sun City Summerlin and The Paseos, and Downtown Summerlin is a familiar shopping district for anyone who lives nearby. Part of Summerlin lies inside the city of Las Vegas, so you may also want to read our [Las Vegas page](/service-areas/las-vegas).",
+      "Many homes here lean toward light carpet and natural-looking tile or stone. Pale surfaces are beautiful, but they are unforgiving: fine desert dust turns cream carpet a dull gray along walking paths, and very hard water leaves a cloudy film on stone and tile. When a spill happens, [stain removal](/services/stain-removal) matters more on light fabric than on anything darker, because there is nowhere for a mark to hide.",
+      "That is why we take things slowly. Before any cleaning starts, we want to know what the floor is made of and how it has been treated in the past, since stone and polished tile can react badly to the wrong product. Photos let Miguel spot those questions early. Larger rugs and furniture deserve the same care, which is where [rug cleaning](/services/rug-cleaning) and [upholstery cleaning](/services/upholstery-cleaning) come into play.",
+      "Outdoor living is part of Summerlin life too, with patios, walkways and entries that collect dust between storms. If those areas look dull, ask about [pressure washing](/services/pressure-washing) when you request your estimate. For homes in the northwest, take a look at [Centennial Hills](/service-areas/centennial-hills), which has its own page."
+    ],
+    "neighborhoods": [
+      "The Ridges",
+      "Red Rock Country Club",
+      "Sun City Summerlin",
+      "The Paseos"
+    ],
+    "estimateCopy": "To price a Summerlin job, Miguel works from pictures. Photograph your carpet, stone or tile, plus any rug or sofa you would like included, and send them with your ZIP code through the text button here. He replies with your free estimate. If a floor is delicate or you are unsure how it was finished, mention that in the message, or call or text 702-350-5775 and talk it over first.",
+    "faq": [
+      {
+        "q": "Do you clean homes in Sun City Summerlin?",
+        "a": "Yes, Sun City Summerlin is part of the area we serve, along with The Ridges, Red Rock Country Club and The Paseos. Send your ZIP code with your photos so Miguel can confirm scheduling for your address. If you have questions about access to your community, mention them in your first message and we will work out the details with you."
+      },
+      {
+        "q": "Can you clean light-colored carpet without leaving residue?",
+        "a": "That is a fair concern, because pale carpet shows leftover product quickly. Our process includes a rinse and extraction step intended to carry soil and cleaning solution out of the fibers. We cannot promise a particular result before seeing your carpet, so share a few pictures first and Miguel will be straightforward about the outcome."
+      },
+      {
+        "q": "Do you clean natural stone floors in Summerlin?",
+        "a": "Natural stone needs more caution than ordinary tile, since some stones are sensitive to certain products. Text clear photos of the floor and mention anything you know about the stone or its finish. Miguel will review them, explain what he can safely do, and give you a free estimate. Our [tile cleaning](/services/tile-cleaning) page covers the basics."
+      },
+      {
+        "q": "How far into Summerlin do you travel?",
+        "a": "We serve Summerlin throughout, from the neighborhoods nearest Red Rock Canyon to those that border the rest of the city. Your ZIP code is the quickest way to confirm that we cover your street. Include it when you text, or give it when you call or text with a question, and Miguel will confirm your address."
+      }
+    ],
+    "popularServices": [
+      "carpet-cleaning",
+      "tile-cleaning",
+      "rug-cleaning",
+      "upholstery-cleaning",
+      "stain-removal",
+      "pressure-washing"
+    ],
+    "nearbyAreas": [
+      "las-vegas",
+      "centennial-hills",
+      "spring-valley"
+    ],
+    "ctaHeadline": "Bring Summerlin Floors Back to Life"
+  },
+  {
+    "slug": "north-las-vegas",
+    "name": "North Las Vegas",
+    "schemaType": "City",
+    "containedIn": "Clark County, Nevada",
+    "isMain": false,
+    "order": 4,
+    "mainKeyword": "carpet cleaning North Las Vegas",
+    "supportKeywords": [
+      "tile cleaning North Las Vegas",
+      "upholstery cleaning North Las Vegas",
+      "pet odor removal North Las Vegas",
+      "Aliante carpet cleaning"
+    ],
+    "title": "Carpet Cleaning North Las Vegas | Advanced Cleaning",
+    "metaDescription": "Carpet, tile, upholstery and exterior cleaning in North Las Vegas, including Aliante and Eldorado. Call or text 702-350-5775 for a free estimate.",
+    "h1": "Carpet & Tile Cleaning in North Las Vegas, NV",
+    "localHeading": "Cleaning for Busy North Las Vegas Households",
+    "cardSummary": "Carpet, pet odor, stain, upholstery and garage cleaning for busy North Las Vegas households in Aliante, Eldorado and nearby streets.",
+    "heroIntro": "Kids, pets and a full calendar leave little time for scrubbing floors. If you need carpet cleaning North Las Vegas families can schedule around a hectic week, Advanced Cleaning Services handles carpet, tile, couches and garages across the city. Share a few pictures with Miguel and request your free estimate.",
+    "smsMessage": "Hi Miguel, I'd like a free estimate for a home in North Las Vegas. I'll send photos of what needs cleaning.",
+    "servicesIntro": "Busy homes wear out their floors and furniture in predictable ways: muddy shoes, juice spills, and the occasional pet accident. That is why [carpet cleaning](/services/carpet-cleaning), [pet urine and odor removal](/services/pet-urine-odor-removal) and [stain removal](/services/stain-removal) top the list for this part of the Valley. Upholstery, tile and garage floors follow, and every page below explains what we do, how we do it and what you can expect afterward.",
+    "local": [
+      "North Las Vegas is a city in the northern part of the Las Vegas Valley, and it keeps adding new neighborhoods. Aliante and Eldorado are two names you will hear often, and the area around Craig Ranch Regional Park is another. We do not claim to know what every street looks like, so we let your photos show us the carpet, the tile and whatever else needs help. A family settling into a new place might want to start with the floors.",
+      "Households here are often full ones. Children drag in dirt and drop snacks, dogs and cats leave their marks, and a family room couch does most of the work in the house. Fine desert dust sits on top of all of that, working its way into carpet pile and fabric until the room looks tired even when it has just been tidied. A deep clean resets those surfaces.",
+      "Pets deserve a special mention. Urine that soaks past the surface can leave an odor that returns whenever the weather warms, and ordinary cleaning rarely stops it. To see what a proper treatment involves, read about [pet urine and odor removal](/services/pet-urine-odor-removal) before you text. For furniture that has taken the same punishment, [upholstery cleaning](/services/upholstery-cleaning) can refresh sofas and chairs.",
+      "Garages in busy family homes tend to become a catch-all for bikes, tools and oil drips from the cars. If yours needs a reset, see [garage cleaning](/services/garage-cleaning) and ask Miguel what is possible. Nearby, [Centennial Hills](/service-areas/centennial-hills) and [Las Vegas](/service-areas/las-vegas) have their own pages if you live close to the edge of North Las Vegas, and we are glad to hear which side of town you are on."
+    ],
+    "neighborhoods": [
+      "Aliante",
+      "Eldorado",
+      "Craig Ranch Regional Park area"
+    ],
+    "estimateCopy": "Booking in North Las Vegas is simple and quick. Take a few pictures of the carpet, couch, tile or garage floor, then press the text button and send them to Miguel with your ZIP code. He looks over everything and replies with a free estimate for your home. If your week is hectic, you can call or text 702-350-5775 as well, whenever you have a spare minute.",
+    "faq": [
+      {
+        "q": "Do you clean carpets in Aliante?",
+        "a": "Yes, Aliante is one of the North Las Vegas neighborhoods we serve. Text Miguel photos of your carpet, mention any stains or pet spots, and include your ZIP code. He will reply with a free estimate and explain what the visit will cover. For bigger jobs, such as several rooms and stairs, say so in your message."
+      },
+      {
+        "q": "Can you help with pet stains in North Las Vegas homes?",
+        "a": "We can. Pet accidents are common in family homes, and urine that has soaked deep can keep smelling after surface cleaning. Send photos of each spot and tell Miguel how long ago it happened. He will explain what treatment fits and what results are realistic. Details are on our [pet urine and odor removal](/services/pet-urine-odor-removal) page."
+      },
+      {
+        "q": "Do you clean rental homes between tenants?",
+        "a": "Miguel can quote carpet, tile and other cleaning for a vacant rental. Owners and property managers should say so in the first message and share photos of the rooms, so the estimate reflects the work involved. Mention any key or lockbox arrangements and the move-in date you are working toward."
+      },
+      {
+        "q": "How do I book a cleaning in North Las Vegas?",
+        "a": "Start by texting photos of the rooms or surfaces you want cleaned to the number on this page, along with your ZIP code. Miguel will review them and send a free estimate. If it suits you, he will then arrange a time. If you would rather talk it through, call or text and ask your questions first."
+      }
+    ],
+    "popularServices": [
+      "carpet-cleaning",
+      "pet-urine-odor-removal",
+      "stain-removal",
+      "upholstery-cleaning",
+      "tile-cleaning",
+      "garage-cleaning"
+    ],
+    "nearbyAreas": [
+      "las-vegas",
+      "centennial-hills",
+      "paradise"
+    ],
+    "ctaHeadline": "Take Cleaning Off Your Busy Week"
+  },
+  {
+    "slug": "spring-valley",
+    "name": "Spring Valley",
+    "schemaType": "Place",
+    "containedIn": "Clark County, Nevada (unincorporated town)",
+    "isMain": false,
+    "order": 5,
+    "mainKeyword": "carpet cleaning Spring Valley NV",
+    "supportKeywords": [
+      "Spring Valley tile cleaning",
+      "upholstery cleaning Spring Valley",
+      "condo carpet cleaning Las Vegas",
+      "move-out carpet cleaning"
+    ],
+    "title": "Carpet Cleaning Spring Valley, NV | Advanced Cleaning",
+    "metaDescription": "Carpet, tile and upholstery cleaning for Spring Valley homes, condos and rentals. Call or text 702-350-5775 for a free estimate.",
+    "h1": "Carpet & Tile Cleaning in Spring Valley, NV",
+    "localHeading": "Homes, Condos and Rentals in Spring Valley",
+    "cardSummary": "Carpet, tile and upholstery cleaning for Spring Valley houses, condos, apartments and rentals, including move-in and move-out jobs.",
+    "heroIntro": "Spring Valley has houses, condos, apartments and rentals side by side, and each needs a slightly different plan. If you are searching for carpet cleaning Spring Valley NV has to offer, Advanced Cleaning Services makes it easy to start: send Miguel photos and he prepares a free estimate for your place.",
+    "smsMessage": "Hi Miguel, I'd like a free estimate for a home in Spring Valley. I'll send photos of what needs cleaning.",
+    "servicesIntro": "A place that changes hands often needs floors that look presentable on short notice, so [carpet cleaning](/services/carpet-cleaning) and [stain removal](/services/stain-removal) lead the requests here. [Tile cleaning](/services/tile-cleaning), upholstery work, pet odor treatment and [water extraction](/services/water-extraction) after a leak complete the list. Every page below spells out the steps, what is included and what you should expect once the work is finished, so you can decide before you ever text.",
+    "local": [
+      "Spring Valley is an unincorporated town in Clark County, west of the Las Vegas Strip. Chinatown runs along Spring Mountain Road, and Rhodes Ranch is one of the neighborhoods people mention when they ask about the area. Beyond those, the housing mix includes single-family homes, condos, apartments and rentals, which means the same town can present very different cleaning problems from one door to the next. We keep that in mind when we plan each estimate.",
+      "Moving is where many of those problems begin. A tenant leaving an apartment wants the carpet to look fresh, and a new owner wants to start in a clean home. Foot traffic, spilled drinks and ground-in dust leave marks that a vacuum cannot lift, so a professional clean makes a visible difference. We can quote move-out and move-in work once we see photos of the rooms.",
+      "Condos and apartments bring their own practical details. There may be a gate, a shared hallway or limited parking, so tell Miguel about access when you text. Smaller floor plans usually mean quicker jobs, but they still deserve a careful look. Tile in kitchens and entryways collects very hard water film, and our [grout cleaning](/services/grout-cleaning) page shows how we handle dark lines between tiles.",
+      "Water damage is a risk in any building with plumbing, and a slow leak or an overflow can soak carpet before anyone notices. If that happens, read about [water extraction](/services/water-extraction) and call right away. If you live near the borders of town, neighbors in [Summerlin](/service-areas/summerlin), [Enterprise](/service-areas/enterprise) and [Paradise](/service-areas/paradise) can find their own pages as well, and we are happy to confirm which area your address falls into."
+    ],
+    "neighborhoods": [
+      "Rhodes Ranch"
+    ],
+    "estimateCopy": "Whether you own, rent or manage a property in Spring Valley, the estimate works the same way. Photograph the rooms that need work, write down your ZIP code, and use the text button to send everything to Miguel. He studies the pictures and returns a free estimate. For a vacant unit, add your timeline, and reach out by call or text at 702-350-5775 if you have questions about timing.",
+    "faq": [
+      {
+        "q": "Do you clean condos and apartments in Spring Valley?",
+        "a": "Yes, we can quote cleaning for condos and apartments as well as single-family homes. Tell Miguel in your first message about any gate, elevator or parking limits, and include photos of the carpet and tile. The estimate is free, and he will go over what the visit should cover once he has seen the rooms."
+      },
+      {
+        "q": "Can you do move-out carpet cleaning?",
+        "a": "Yes. Move-out carpet cleaning is a common request when an apartment or house changes hands. Send photos of every room, note which spots worry you most, and give Miguel your target date. He will respond with a free estimate. Some stains may only fade rather than disappear, and he will say so plainly after seeing the pictures."
+      },
+      {
+        "q": "Do landlords and property managers book you?",
+        "a": "Landlords and property managers are welcome to ask for a quote. Send photos of the unit and say how many rooms need attention, and Miguel will respond with an estimate. We do not list past clients, so a free estimate and an honest conversation are the way to see how we work. If you prefer to talk first, call or text."
+      },
+      {
+        "q": "Do you clean tile in Spring Valley homes?",
+        "a": "Yes. Kitchens, bathrooms and entryways often have tile, and very hard water leaves a film that mopping cannot remove. Text photos of the floor and Miguel will review them. If the grout lines look dark, mention that too, since [grout cleaning](/services/grout-cleaning) is often paired with the tile itself."
+      }
+    ],
+    "popularServices": [
+      "carpet-cleaning",
+      "stain-removal",
+      "tile-cleaning",
+      "upholstery-cleaning",
+      "pet-urine-odor-removal",
+      "water-extraction"
+    ],
+    "nearbyAreas": [
+      "summerlin",
+      "enterprise",
+      "paradise"
+    ],
+    "ctaHeadline": "Ready for a Fresh Start in Spring Valley?"
+  },
+  {
+    "slug": "enterprise",
+    "name": "Enterprise",
+    "schemaType": "Place",
+    "containedIn": "Clark County, Nevada (unincorporated town)",
+    "isMain": false,
+    "order": 6,
+    "mainKeyword": "carpet cleaning Enterprise NV",
+    "supportKeywords": [
+      "Southern Highlands carpet cleaning",
+      "Mountain's Edge carpet cleaning",
+      "tile cleaning Enterprise",
+      "pressure washing Enterprise NV"
+    ],
+    "title": "Carpet Cleaning Enterprise, NV | Advanced Cleaning",
+    "metaDescription": "Carpet, tile, upholstery and exterior cleaning in Enterprise, from Southern Highlands to Mountain's Edge. Call or text 702-350-5775.",
+    "h1": "Carpet & Tile Cleaning in Enterprise, NV",
+    "localHeading": "Keeping Newer Southwest Valley Homes Looking New",
+    "cardSummary": "Carpet, driveway, paver, tile and upholstery cleaning for newer Enterprise homes, including Southern Highlands and Mountain's Edge.",
+    "heroIntro": "Enterprise is one of the fastest-growing parts of the southwest Valley, and its newer homes reward early care. For carpet cleaning Enterprise NV households can count on, Advanced Cleaning Services looks after floors, furniture, pavers and driveways. Text Miguel a few photos to receive a free estimate.",
+    "smsMessage": "Hi Miguel, I'd like a free estimate for a home in Enterprise. I'll send photos of what needs cleaning.",
+    "servicesIntro": "In a newer house, the goal is usually to keep surfaces looking the way they did on move-in day. Many neighbors begin with [carpet cleaning](/services/carpet-cleaning), then add [driveway cleaning](/services/driveway-cleaning) and [pressure washing](/services/pressure-washing) for the outside. Tile, upholstery and the garage floor are the other three services we feature here, and each page explains the work step by step and tells you what to expect when we finish.",
+    "local": [
+      "Enterprise is an unincorporated town in Clark County, in the southwest Las Vegas Valley, and it counts among the Valley's fastest-growing areas. Southern Highlands and Mountain's Edge are two of its well-known neighborhoods. Because so much of the housing is recent, the flooring tends to be in good shape, and the right time to protect it is before problems pile up.",
+      "Starting early pays off. Fine desert dust enters through every door and settles into fresh carpet just as it does in an older house, and pale tile shows a cloudy mineral film from hard water once the shine fades. Cleaning on a regular schedule keeps that soil from packing down into the pile or into textured surfaces, which makes each later visit easier. Our [upholstery cleaning](/services/upholstery-cleaning) page covers new furniture in the same spirit.",
+      "The outside of a newer home deserves attention too. Concrete driveways and paver walkways gather dust, tire marks and hard water spots, and the summer sun bakes anything left on them. A gentle wash restores the look of the front of the house, and the garage floor can use the same treatment. Ask Miguel what suits your surfaces when you send photos, because every material reacts differently.",
+      "Enterprise sits close to its neighbors. If you live near the edge of town, you may also want the pages for [Spring Valley](/service-areas/spring-valley), [Henderson](/service-areas/henderson) or [Paradise](/service-areas/paradise). The first step is the same everywhere: pictures, your ZIP code and a short note about what you would like to improve."
+    ],
+    "neighborhoods": [
+      "Southern Highlands",
+      "Mountain's Edge"
+    ],
+    "estimateCopy": "Starting is easy from anywhere in Enterprise. Photograph your carpet, tile, pavers or driveway, then press the text button and send the pictures to Miguel with your ZIP code. He reviews them and sends back a free estimate. If you are unsure what a newer surface needs, ask over the phone, whether you call or text, before you decide anything.",
+    "faq": [
+      {
+        "q": "Should I clean new carpet in a newer home?",
+        "a": "New carpet still collects dust and tracked-in soil, and it is easier to keep clean than to restore later. A first professional cleaning once the carpet has seen regular use can keep that soil from settling in. Check your carpet maker's care instructions, and text Miguel photos if you would like his opinion on a schedule."
+      },
+      {
+        "q": "Do you clean pavers and driveways in Enterprise?",
+        "a": "Yes. Pavers and concrete both collect dust, oil drips and hard water spots. Send photos of the surface and Miguel will tell you what to expect. Our [driveway cleaning](/services/driveway-cleaning) page has more detail on concrete and pavers, and [pressure washing](/services/pressure-washing) covers patios and walkways nearby."
+      },
+      {
+        "q": "Do you serve Southern Highlands and Mountain's Edge?",
+        "a": "Yes, we serve both Southern Highlands and Mountain's Edge, and the rest of Enterprise as well. Put your ZIP code in the first message so Miguel can confirm your address. If you are close to a boundary and are not sure where you fall, call or text and he will help you work it out."
+      },
+      {
+        "q": "How do I get an estimate in Enterprise?",
+        "a": "Text a handful of clear photos of what you want cleaned to Miguel, along with your ZIP code. He will look through them and answer with a free estimate. If you would like to describe the job in person first, phone the number shown on this page and ask your questions."
+      }
+    ],
+    "popularServices": [
+      "carpet-cleaning",
+      "driveway-cleaning",
+      "pressure-washing",
+      "tile-cleaning",
+      "upholstery-cleaning",
+      "garage-cleaning"
+    ],
+    "nearbyAreas": [
+      "spring-valley",
+      "henderson",
+      "paradise"
+    ],
+    "ctaHeadline": "Keep Your Enterprise Home Looking New"
+  },
+  {
+    "slug": "paradise",
+    "name": "Paradise",
+    "schemaType": "Place",
+    "containedIn": "Clark County, Nevada (unincorporated town)",
+    "isMain": false,
+    "order": 7,
+    "mainKeyword": "carpet cleaning Paradise NV",
+    "supportKeywords": [
+      "condo carpet cleaning Paradise",
+      "rental carpet cleaning Las Vegas",
+      "upholstery cleaning Paradise",
+      "tile cleaning Paradise NV"
+    ],
+    "title": "Carpet Cleaning Paradise, NV | Advanced Cleaning",
+    "metaDescription": "Carpet, tile and upholstery cleaning for Paradise homes, condos and rentals near the Strip and UNLV. Call or text 702-350-5775.",
+    "h1": "Carpet & Tile Cleaning in Paradise, NV",
+    "localHeading": "Cleaning for Condos, Rentals and Long-Time Homes",
+    "cardSummary": "Carpet, stain, upholstery, tile and water cleanup for Paradise condos, rentals and long-time homes near the Strip and UNLV.",
+    "heroIntro": "Paradise is an unincorporated town that includes most of the Las Vegas Strip, UNLV and Harry Reid International Airport, and its housing is just as varied. When you need carpet cleaning Paradise NV condo owners, landlords and longtime residents can all use, Advanced Cleaning Services starts with photos and a free estimate from Miguel.",
+    "smsMessage": "Hi Miguel, I'd like a free estimate for a home in Paradise. I'll send photos of what needs cleaning.",
+    "servicesIntro": "Units that see many occupants, and houses that have stood for years, both gather wear in the same places. Carpet, stains and soft furniture lead the requests, with [carpet cleaning](/services/carpet-cleaning) and [stain removal](/services/stain-removal) at the front. [Upholstery cleaning](/services/upholstery-cleaning), tile work, pet odor treatment and emergency [water extraction](/services/water-extraction) fill out the six services below, and each page lists what is included along with how the work is done.",
+    "local": [
+      "Paradise is an unincorporated town in Clark County, and it takes in most of the Las Vegas Strip, UNLV and Harry Reid International Airport. That central position means a lot of different living situations share one address area: condos, rentals, and homes that families have occupied for a long time. We do not guess which one you have, so your photos and a short description set the plan.",
+      "Condos and rentals face a particular challenge, which is turnover. Different people live in or visit a unit, and each leaves traces behind in the carpet and upholstery. Between stays, a cleaning can reset a room so the next occupant walks into something fresh. If you manage a place like that, tell Miguel about your schedule in the first message so the estimate can reflect it.",
+      "Long-time homes have their own story. Carpet that has been walked on for years may show gray traffic paths, and old spills can leave marks that need patient work. Fine desert dust and very hard water add to the buildup, particularly on tile around sinks and showers. Our [tile cleaning](/services/tile-cleaning) page describes how we approach mineral film, and Miguel can talk through realistic outcomes for older flooring.",
+      "Plumbing leaks and appliance overflows happen in condos and houses alike, and wet carpet is better handled promptly. If water is involved, [water extraction](/services/water-extraction) may be the place to start. For other needs, look at the pages for [Las Vegas](/service-areas/las-vegas), [Spring Valley](/service-areas/spring-valley) and [Henderson](/service-areas/henderson) if your address sits near those boundaries."
+    ],
+    "neighborhoods": [
+      "Las Vegas Strip area",
+      "UNLV area",
+      "Harry Reid International Airport area"
+    ],
+    "estimateCopy": "Getting a free estimate in Paradise follows the same simple route as anywhere else in the Valley. Take pictures of the rooms or furniture you want cleaned, then use the text button to message Miguel with the photos, your ZIP code and any access details. He will reply with an estimate for the work. Questions beforehand are fine; just call or text 702-350-5775.",
+    "faq": [
+      {
+        "q": "Do you clean condos near the Strip?",
+        "a": "We can quote cleaning for condos in Paradise, including those close to the Strip. Mention parking, elevators or building rules in your message, because those details affect how a visit runs. Send photos of the carpet, tile or furniture, add your ZIP code, and Miguel will return a free estimate for the unit."
+      },
+      {
+        "q": "Can you clean between rental guests or tenants?",
+        "a": "Yes, we can quote cleaning between occupants for rental homes and condos. Send photos and the dates you need, and say whether the unit is a long-term or short-term rental. Miguel will then explain what he can do within your timeline. Details such as lockbox or key handoff can be settled by call or text."
+      },
+      {
+        "q": "Do you work in gated communities?",
+        "a": "Yes, as long as we can get through the gate. Give Miguel the access instructions, such as a code, a guest list or a contact at the front desk, when you book. We do not name specific communities. If the process is complicated, call or text before the visit so everything is settled in advance."
+      },
+      {
+        "q": "How soon can you come out in Paradise?",
+        "a": "Scheduling depends on Miguel's calendar when you reach out, so we avoid promising a specific arrival time. Message him pictures along with your ZIP code, and he will respond with an estimate and the next steps. If you have an urgent problem such as wet carpet, phone him directly and explain the situation."
+      }
+    ],
+    "popularServices": [
+      "carpet-cleaning",
+      "stain-removal",
+      "upholstery-cleaning",
+      "tile-cleaning",
+      "water-extraction",
+      "pet-urine-odor-removal"
+    ],
+    "nearbyAreas": [
+      "las-vegas",
+      "spring-valley",
+      "henderson"
+    ],
+    "ctaHeadline": "Refresh Your Paradise Condo or Home"
+  },
+  {
+    "slug": "centennial-hills",
+    "name": "Centennial Hills",
+    "schemaType": "Place",
+    "containedIn": "Las Vegas (northwest), Nevada",
+    "isMain": false,
+    "order": 8,
+    "mainKeyword": "carpet cleaning Centennial Hills",
+    "supportKeywords": [
+      "Skye Canyon carpet cleaning",
+      "Providence carpet cleaning",
+      "northwest Las Vegas carpet cleaning",
+      "tile cleaning Centennial Hills"
+    ],
+    "title": "Carpet Cleaning Centennial Hills | Advanced Cleaning",
+    "metaDescription": "Carpet, tile, upholstery and exterior cleaning in Centennial Hills, Providence and Skye Canyon. Call or text 702-350-5775 for a free estimate.",
+    "h1": "Carpet & Tile Cleaning in Centennial Hills, NV",
+    "localHeading": "Cleaning for Northwest Valley Family Homes",
+    "cardSummary": "Carpet, pet odor, upholstery, tile and patio cleaning for family homes in Centennial Hills, Providence and Skye Canyon.",
+    "heroIntro": "Centennial Hills lies in the northwest corner of the city of Las Vegas, home to Providence, Skye Canyon and plenty of busy families. For carpet cleaning Centennial Hills households appreciate, Advanced Cleaning Services covers floors, furniture, patios and driveways. Send Miguel some photos to get a free estimate.",
+    "smsMessage": "Hi Miguel, I'd like a free estimate for a home in Centennial Hills. I'll send photos of what needs cleaning.",
+    "servicesIntro": "Play areas, pets and a lively household put real wear on a home, so the requests we expect from this side of town start with [carpet cleaning](/services/carpet-cleaning) and [pet urine and odor removal](/services/pet-urine-odor-removal). Upholstery, tile, [pressure washing](/services/pressure-washing) and driveways complete the list below, and each service page walks through the process, the inclusions and the results to expect afterward, so nothing is a surprise.",
+    "local": [
+      "Centennial Hills is in the northwest part of the city of Las Vegas. Providence and Skye Canyon are two of the neighborhoods people ask about, and Floyd Lamb Park at Tule Springs is a landmark nearby. This is family country, with newer homes and households that spend plenty of time at home, indoors and out.",
+      "Family living leaves a trail. Kids tumble across the carpet, snacks end up on cushions, and the dog has favorite spots that become stained or smelly if nobody addresses them. Meanwhile fine desert dust and very hard water do their quiet work in the background. Carpet loses its softness, tile gets a hazy film, and sofas darken where people sit. Regular cleaning keeps up with all of it. That adds up over a year of ordinary living.",
+      "Pets deserve a plan of their own. Old accidents can leave odors that come back in warm weather, and you may not even know where every spot is. Start with our page on [upholstery cleaning](/services/upholstery-cleaning) if the couch is the issue, or look at [tile cleaning](/services/tile-cleaning) for entryways and kitchens that take daily abuse from paws and shoes. Mention it all in your message.",
+      "Outdoors, patios and driveways gather windblown dust and monsoon mud, and children's play leaves its own mess behind. A wash can brighten them considerably. If you are weighing options, remember that [Las Vegas](/service-areas/las-vegas), [Summerlin](/service-areas/summerlin) and [North Las Vegas](/service-areas/north-las-vegas) have their own pages, and any of them may be closer to your address than you expect. Just ask Miguel."
+    ],
+    "neighborhoods": [
+      "Providence",
+      "Skye Canyon"
+    ],
+    "estimateCopy": "Centennial Hills residents can get a free estimate by phone in about the time it takes to snap a few pictures. Photograph the carpet, couch, tile or patio, then use the button below to text Miguel the images and your ZIP code. He studies your photos and answers with a price. Questions first? Call or text 702-350-5775 whenever it suits you.",
+    "faq": [
+      {
+        "q": "Do you serve Providence and Skye Canyon?",
+        "a": "Yes. We serve both Providence and Skye Canyon, along with the rest of Centennial Hills. Add your ZIP code to the first message so the address can be confirmed. If you live between neighborhoods and wonder where you fall, mention your street when you call or text, and Miguel will check for you."
+      },
+      {
+        "q": "Can you clean carpets in homes with kids and pets?",
+        "a": "Yes. Homes with children and animals are among the most common places carpet needs attention. Tell Miguel about spills, accidents or odors when you send photos, since they affect how the work is planned. He will give you a free estimate and be straightforward about what cleaning can and cannot fix."
+      },
+      {
+        "q": "Do you pressure wash patios in Centennial Hills?",
+        "a": "Yes, we can wash patios as well as walkways and other outdoor surfaces. Desert dust and monsoon mud settle fast, and a good wash can change how a backyard feels. Text a picture of the area and note what it is made of, and you will get an estimate in return."
+      },
+      {
+        "q": "How do I get a free estimate in Centennial Hills?",
+        "a": "Text pictures of whatever needs attention to the number shown here, and put your ZIP code in the message. Miguel looks them over and replies with a free estimate. Any questions you have beforehand can be answered over the phone, and he is happy to talk through your options."
+      }
+    ],
+    "popularServices": [
+      "carpet-cleaning",
+      "pet-urine-odor-removal",
+      "upholstery-cleaning",
+      "tile-cleaning",
+      "pressure-washing",
+      "driveway-cleaning"
+    ],
+    "nearbyAreas": [
+      "las-vegas",
+      "summerlin",
+      "north-las-vegas"
+    ],
+    "ctaHeadline": "Reset Your Centennial Hills Home"
+  },
+  {
+    "slug": "anthem",
+    "name": "Anthem",
+    "schemaType": "Place",
+    "containedIn": "Henderson, Nevada",
+    "isMain": false,
+    "order": 9,
+    "mainKeyword": "carpet cleaning Anthem Henderson",
+    "supportKeywords": [
+      "Sun City Anthem carpet cleaning",
+      "Anthem Highlands carpet cleaning",
+      "tile cleaning Anthem NV",
+      "upholstery cleaning Anthem"
+    ],
+    "title": "Carpet Cleaning Anthem, Henderson | Advanced Cleaning",
+    "metaDescription": "Carpet, tile, upholstery and exterior cleaning in Anthem, Henderson, including Sun City Anthem. Call or text 702-350-5775 for a free estimate.",
+    "h1": "Carpet & Tile Cleaning in Anthem, NV",
+    "localHeading": "Cleaning for Anthem's Hillside Homes",
+    "cardSummary": "Tile, stone, carpet, rug and upholstery cleaning for Anthem homes in southern Henderson, including Sun City Anthem and Anthem Highlands.",
+    "heroIntro": "Anthem occupies the southern part of Henderson, where hillside streets catch the wind and the dust that rides on it. If you want carpet cleaning Anthem Henderson homeowners can schedule with confidence, Advanced Cleaning Services is ready. Miguel reviews your photos and puts together a free estimate for floors, rugs and furniture.",
+    "smsMessage": "Hi Miguel, I'd like a free estimate for a home in Anthem. I'll send photos of what needs cleaning.",
+    "servicesIntro": "Hillsides and open desert nearby mean extra dust at the door, and many Anthem floors are tile or stone rather than wall-to-wall carpet. For that reason [tile cleaning](/services/tile-cleaning) and [grout cleaning](/services/grout-cleaning) sit beside [carpet cleaning](/services/carpet-cleaning) on this list, with rugs, upholstery and exterior washing completing the six services featured on this page. Each linked page covers the process, what a visit includes and the kind of result you can reasonably expect.",
+    "local": [
+      "Anthem is a community in the southern part of Henderson, and it includes Sun City Anthem, Anthem Highlands and Anthem Country Club. Homes here are built on the hillside, and that setting shapes the housekeeping. Wind carries fine dust up the slopes and straight through doors that open and close all day, so floors collect a film that regular sweeping only partly removes. A cleaning plan that accounts for that dust matters more here than you might expect.",
+      "Stone and tile are common in homes like these, and they behave differently from carpet. Natural stone can be sensitive to harsh products, while porcelain and ceramic hold on to mineral deposits left by very hard water. Grout lines between them darken as soil settles into the porous surface. We look at what you have before suggesting a method, and photos help us ask the right questions.",
+      "Wherever carpet does appear, area rugs often soften the hard floors nearby, and both trap dust that never quite shows until a sunny afternoon reveals it. Our [rug cleaning](/services/rug-cleaning) page explains how rugs differ from fitted carpet, and the [upholstery cleaning](/services/upholstery-cleaning) page covers the chairs and sofas that share those rooms. Ask Miguel to look at all of it in one visit if you like.",
+      "Because Anthem belongs to the larger city, the [Henderson page](/service-areas/henderson) has more about nearby communities. [Boulder City](/service-areas/boulder-city) and [Enterprise](/service-areas/enterprise) lie to either side, and each has its own page. Wherever your front door is, text a few photos and Miguel can tell you what the job will involve."
+    ],
+    "neighborhoods": [
+      "Sun City Anthem",
+      "Anthem Highlands",
+      "Anthem Country Club"
+    ],
+    "estimateCopy": "Scheduling begins on your phone, not at your door. Take clear photos of the tile, stone, carpet or rugs you want cleaned, then hit the button below and message Miguel the pictures plus your ZIP code. He reviews everything and writes back with a free estimate and the next steps. For a quick question, you may call or text 702-350-5775 any time.",
+    "faq": [
+      {
+        "q": "Do you clean homes in Sun City Anthem?",
+        "a": "Yes, Sun City Anthem is within the area we serve, alongside Anthem Highlands and Anthem Country Club. Share your ZIP code along with the pictures so your address can be confirmed. If entry to your community needs arranging, describe how it works in your message and we will plan the visit around it."
+      },
+      {
+        "q": "Can you clean tile and stone floors in Anthem homes?",
+        "a": "Yes, though stone calls for care. Tell Miguel what you know about the material and its finish, and send photos of the floor from a few angles. He will advise whether he can take the job on and how to proceed. Our [tile cleaning](/services/tile-cleaning) page explains how hard water and soil affect these floors."
+      },
+      {
+        "q": "Do you clean area rugs in Anthem?",
+        "a": "We do. Rugs vary widely in fiber and construction, so send a photo of the rug, its approximate size and any tag you can find. Miguel will tell you how he would approach it. Whether the work happens in your home or elsewhere depends on the rug, and he will explain that when he replies."
+      },
+      {
+        "q": "How do I schedule a cleaning in Anthem?",
+        "a": "Message Miguel photos of what you want cleaned and add your ZIP code. He will respond with a free estimate, and once you agree he will set a time that works. Prefer to start with a conversation? Call or text, describe the rooms, and he will tell you what he would need to see."
+      }
+    ],
+    "popularServices": [
+      "carpet-cleaning",
+      "tile-cleaning",
+      "grout-cleaning",
+      "rug-cleaning",
+      "upholstery-cleaning",
+      "pressure-washing"
+    ],
+    "nearbyAreas": [
+      "henderson",
+      "boulder-city",
+      "enterprise"
+    ],
+    "ctaHeadline": "Get Your Anthem Floors Looking Fresh"
+  },
+  {
+    "slug": "boulder-city",
+    "name": "Boulder City",
+    "schemaType": "City",
+    "containedIn": "Clark County, Nevada",
+    "isMain": false,
+    "order": 10,
+    "mainKeyword": "carpet cleaning Boulder City NV",
+    "supportKeywords": [
+      "tile cleaning Boulder City",
+      "upholstery cleaning Boulder City",
+      "pressure washing Boulder City",
+      "carpet cleaners near Boulder City"
+    ],
+    "title": "Carpet Cleaning Boulder City, NV | Advanced Cleaning",
+    "metaDescription": "Carpet, tile, upholstery and exterior cleaning for Boulder City homes near Lake Mead. Call or text 702-350-5775 for a free estimate.",
+    "h1": "Carpet & Tile Cleaning in Boulder City, NV",
+    "localHeading": "Cleaning for Boulder City's Established Homes",
+    "cardSummary": "Carpet, tile, upholstery, rug and exterior cleaning for Boulder City homes, planned efficiently for a visit beyond Henderson.",
+    "heroIntro": "Boulder City is a small city southeast of Henderson, near Lake Mead and Hoover Dam, and its homes deserve the same attention as any in the Valley. For carpet cleaning Boulder City NV residents can arrange without a hassle, Advanced Cleaning Services reviews your photos first, then gives you a free estimate.",
+    "smsMessage": "Hi Miguel, I'd like a free estimate for a home in Boulder City. I'll send photos of what needs cleaning.",
+    "servicesIntro": "Established homes often have floors that have seen plenty of use, so the questions we hear most concern [carpet cleaning](/services/carpet-cleaning) and [tile cleaning](/services/tile-cleaning). Upholstery, rugs, driveways and [pressure washing](/services/pressure-washing) round out the six services listed below. Every service page describes the process in plain language and sets out what a booking includes, so you know what you are getting before you text a single photo.",
+    "local": [
+      "Boulder City is a small city southeast of Henderson, close to Lake Mead and Hoover Dam, and it has a historic downtown that gives the place a character of its own. It sits a little apart from the rest of the Valley, which is why we like to plan a visit here carefully. A clear message with photos lets Miguel see the whole job and organize the trip sensibly.",
+      "Established homes tend to have floors with some history. Carpet may have been walked on for many seasons, and tile may carry years of hard water film that a mop leaves untouched. Older flooring needs a gentler hand, since backing and finishes can be more delicate than they look. We would rather examine a few pictures and explain what is realistic than promise a result we cannot see.",
+      "The desert climate is no kinder to the outside of a house. Fine dust, hot summers and the occasional monsoon storm leave patios and driveways streaked, and concrete holds stains from whatever drips onto it. See [driveway cleaning](/services/driveway-cleaning) if the entry needs a lift. For rugs that have lasted a long time, the [rug cleaning](/services/rug-cleaning) page explains how we assess them. Ask about anything else that has been bothering you.",
+      "Maybe your address is closer to another community. In that case you may also want to read about [Henderson](/service-areas/henderson), [Anthem](/service-areas/anthem) or the main [Las Vegas](/service-areas/las-vegas) page, since all three are nearby. Whichever applies, the starting point does not change: pictures, your ZIP code and a few words about what you hope to improve."
+    ],
+    "neighborhoods": [
+      "Historic downtown Boulder City"
+    ],
+    "estimateCopy": "Because Boulder City lies beyond Henderson, it helps to bundle your cleaning needs into one conversation. Photograph the carpet, tile, furniture or outdoor surfaces involved, then text them to Miguel using the button here, with your ZIP code included. A free estimate and a suggested plan come back from him in reply. You may also call or text 702-350-5775 first, whichever you prefer.",
+    "faq": [
+      {
+        "q": "Do you travel to Boulder City?",
+        "a": "Yes, Boulder City is part of the area we serve. Because it lies southeast of Henderson, Miguel plans visits there with a little extra care. Share your photos and ZIP code, and mention everything you would like cleaned so the work can be scheduled in one stop instead of several. Questions are welcome by call or text."
+      },
+      {
+        "q": "Is there a trip charge for Boulder City?",
+        "a": "We do not post prices or fees on this site, and Miguel will cover any travel details in your estimate. If that matters to you, ask when you send your photos and he will answer before you commit to anything. The estimate itself is free, so there is no cost to find out."
+      },
+      {
+        "q": "Can you clean older carpet and tile in established homes?",
+        "a": "Often, yes, but older materials need an honest look first. Text photos of the carpet or tile, and tell Miguel how old it is and what has been done to it. He will explain what cleaning can improve and where age or wear limits the result, then give you a free estimate."
+      },
+      {
+        "q": "Do you offer pressure washing in Boulder City?",
+        "a": "Yes, we can wash patios, walkways, driveways and similar surfaces in Boulder City. Desert dust and hard water spots collect on all of them. Take a few photos of the area and send them along with your ZIP code, and an estimate will follow from Miguel. See our [pressure washing](/services/pressure-washing) page for details."
+      }
+    ],
+    "popularServices": [
+      "carpet-cleaning",
+      "tile-cleaning",
+      "upholstery-cleaning",
+      "pressure-washing",
+      "driveway-cleaning",
+      "rug-cleaning"
+    ],
+    "nearbyAreas": [
+      "henderson",
+      "anthem",
+      "las-vegas"
+    ],
+    "ctaHeadline": "Refresh Your Boulder City Home Today"
+  }
+]

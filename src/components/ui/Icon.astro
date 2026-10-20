@@ -1,0 +1,82 @@
+---
+// Maps the PLAN 3.7 icon names to Lucide components. Inline SVG at build time, zero JS.
+// Decorative by default (aria-hidden). Pass `label` when the icon is the only content of a control.
+import Phone from '@lucide/astro/icons/phone';
+import MessageSquareText from '@lucide/astro/icons/message-square-text';
+import Camera from '@lucide/astro/icons/camera';
+import ClipboardCheck from '@lucide/astro/icons/clipboard-check';
+import MapPin from '@lucide/astro/icons/map-pin';
+import Map from '@lucide/astro/icons/map';
+import Mail from '@lucide/astro/icons/mail';
+import Clock from '@lucide/astro/icons/clock';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Check from '@lucide/astro/icons/check';
+import Menu from '@lucide/astro/icons/menu';
+import X from '@lucide/astro/icons/x';
+import ChevronDown from '@lucide/astro/icons/chevron-down';
+import Plus from '@lucide/astro/icons/plus';
+import UserRoundCheck from '@lucide/astro/icons/user-round-check';
+import Layers from '@lucide/astro/icons/layers';
+import ShieldCheck from '@lucide/astro/icons/shield-check';
+import Sparkles from '@lucide/astro/icons/sparkles';
+import CloudFog from '@lucide/astro/icons/cloud-fog';
+import Droplet from '@lucide/astro/icons/droplet';
+import PawPrint from '@lucide/astro/icons/paw-print';
+import RectangleHorizontal from '@lucide/astro/icons/rectangle-horizontal';
+import Sofa from '@lucide/astro/icons/sofa';
+import Grid3x3 from '@lucide/astro/icons/grid-3x3';
+import Grid2x2Check from '@lucide/astro/icons/grid-2x2-check';
+// "waves" no longer exists in Lucide 1.59; waves-horizontal is the closest match (reported in Task 7).
+import Waves from '@lucide/astro/icons/waves-horizontal';
+import SprayCan from '@lucide/astro/icons/spray-can';
+import CarFront from '@lucide/astro/icons/car-front';
+import Warehouse from '@lucide/astro/icons/warehouse';
+import ChevronsLeftRight from '@lucide/astro/icons/chevrons-left-right';
+
+const icons = {
+  phone: Phone,
+  'message-square-text': MessageSquareText,
+  camera: Camera,
+  'clipboard-check': ClipboardCheck,
+  'map-pin': MapPin,
+  map: Map,
+  mail: Mail,
+  clock: Clock,
+  'arrow-right': ArrowRight,
+  check: Check,
+  menu: Menu,
+  x: X,
+  'chevron-down': ChevronDown,
+  plus: Plus,
+  'user-round-check': UserRoundCheck,
+  layers: Layers,
+  'shield-check': ShieldCheck,
+  sparkles: Sparkles,
+  'cloud-fog': CloudFog,
+  droplet: Droplet,
+  'paw-print': PawPrint,
+  'rectangle-horizontal': RectangleHorizontal,
+  sofa: Sofa,
+  'grid-3x3': Grid3x3,
+  'grid-2x2-check': Grid2x2Check,
+  waves: Waves,
+  'spray-can': SprayCan,
+  'car-front': CarFront,
+  warehouse: Warehouse,
+  'chevrons-left-right': ChevronsLeftRight
+} as const;
+
+export type IconName = keyof typeof icons;
+
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+  label?: string;
+}
+const { name, size = 20, class: className, label } = Astro.props;
+const Cmp = icons[name as IconName];
+if (!Cmp) throw new Error(`Unknown icon "${name}". Add it to src/components/ui/Icon.astro.`);
+const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': 'true' };
+---
+<Cmp size={size} stroke-width={1.75} class={className} {...a11y} />

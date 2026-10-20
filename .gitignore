@@ -1,0 +1,51 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+# local Claude Code settings
+.claude/settings.local.json
+
+# generated frame sequences from tools/render_sequences.py (not site build output; regenerable)
+out/
+
+# Not for the public preview repo: other-client files and agency tooling
+.DS_Store
+.vscode/
+.claude/
+CLAUDE.md
+AGENTS.md
+PLAN.md
+PLAN-geer-fabrication.md
+HOME-SPEC.md
+SITE-PROMPT.md
+MEDIA-GUIDE.md
+JEV-WORKFLOW-MASTER.md
+LOCAL-DOMINATOR-SETUP.md
+jev-config.json
+jev-test-results.md
+connectors/
+prompts/
+tools/
+refs/
+inspiration/

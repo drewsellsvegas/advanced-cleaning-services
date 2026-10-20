@@ -1,0 +1,9 @@
+---
+// 1200px centered container, 16/24/32px side padding (PLAN 3.6).
+interface Props {
+  as?: string;
+  class?: string;
+}
+const { as: Tag = 'div', class: className, ...rest } = Astro.props;
+---
+<Tag class:list={['container-site', className]} {...rest}><slot /></Tag>

@@ -1,0 +1,219 @@
+---
+import { withBase } from '../../lib/paths';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/page/PageHero.astro';
+import Container from '../../components/ui/Container.astro';
+import Section from '../../components/ui/Section.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+import Prose from '../../components/ui/Prose.astro';
+import Icon from '../../components/ui/Icon.astro';
+import FeatureCard from '../../components/ui/FeatureCard.astro';
+import StepCard from '../../components/ui/StepCard.astro';
+import ServiceCard from '../../components/ui/ServiceCard.astro';
+import AreaChip from '../../components/ui/AreaChip.astro';
+import Button from '../../components/ui/Button.astro';
+import Faq from '../../components/ui/Faq.astro';
+import TextEstimatePanel from '../../components/home/TextEstimatePanel.astro';
+import CtaBand from '../../components/home/CtaBand.astro';
+import { getAreas, getService, getServices } from '../../lib/data';
+import type { Service } from '../../lib/data';
+import { realImage } from '../../lib/images';
+import { showOptional, isSet } from '../../lib/placeholder';
+import { renderInline, stripInline } from '../../lib/text';
+import { faqPage, serviceNode } from '../../lib/schema';
+
+// Service page template (PLAN 7.1). Every page is built from one services.json entry.
+// Placeholder prose renders (highlighted) in `astro dev` only; in production a section whose content is still a
+// placeholder is omitted, and the tones of the sections that follow shift so white/cream keep alternating.
+export async function getStaticPaths() {
+  const services = await getServices();
+  return services.map((s) => ({ params: { slug: s.slug }, props: { slug: s.slug } }));
+}
+const { slug } = Astro.props as { slug: string };
+const s = (await getService(slug)) as Service;
+const [allServices, allAreas] = await Promise.all([getServices(), getAreas()]);
+
+const path = `/services/${s.slug}`;
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Services', path: '/services' },
+  { name: s.name, path }
+];
+const lower = s.name.toLowerCase();
+
+const included = s.included.filter((i) => showOptional(i.text) && showOptional(i.title));
+const process = s.process.filter((i) => showOptional(i.text) && showOptional(i.title));
+const overview = s.overview.filter((p) => showOptional(p));
+const benefits = s.benefits.filter((p) => showOptional(p));
+const benefitPoints = s.benefitPoints.filter((i) => showOptional(i.text) && showOptional(i.title));
+const whoItems = s.whoFor.items.filter((i) => showOptional(i.text) && showOptional(i.title));
+const faq = s.faq.filter((f) => showOptional(f.q) && showOptional(f.a));
+const related = s.related.map((r) => allServices.find((x) => x.slug === r)).filter(Boolean) as Service[];
+const featured = s.featuredAreas.map((a) => allAreas.find((x) => x.slug === a)).filter(Boolean);
+
+// Sections after the hero alternate white, cream, white ... in the order of 7.1, skipping omitted ones.
+const sequence = [
+  (overview.length > 0 || included.length > 0) && 'included',
+  process.length > 0 && 'process',
+  (benefits.length > 0 || benefitPoints.length > 0) && 'benefits',
+  (isSet(s.whoFor.intro) || import.meta.env.DEV || whoItems.length > 0) && whoItems.length > 0 && 'who',
+  'estimate',
+  faq.length > 0 && 'faq',
+  'related',
+  'areas'
+].filter(Boolean) as string[];
+const tone = Object.fromEntries(sequence.map((k, i) => [k, i % 2 === 0 ? 'white' : 'cream'])) as Record<string, 'white' | 'cream'>;
+
+const ctaHeading = isSet(s.ctaHeadline) ? s.ctaHeadline : undefined;
+const schema = [serviceNode(s, allAreas), faqPage(faq.map((f) => ({ q: f.q, a: stripInline(f.a) })))];
+const image = realImage(s.image);
+---
+<BaseLayout
+  title={s.title}
+  description={s.metaDescription}
+  path={path}
+  breadcrumbs={crumbs}
+  schema={schema}
+  smsMessage={s.smsMessage}
+>
+  <PageHero
+    crumbs={crumbs}
+    eyebrow={s.group}
+    h1={s.h1}
+    intro={s.heroIntro}
+    smsMessage={s.smsMessage}
+    image={image}
+    imageAlt={s.image.alt}
+    icon={s.icon}
+  />
+
+  {tone.included && (
+    <Section tone={tone.included} labelledby="included-heading">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div class="lg:col-span-7">
+            <SectionHeader id="included-heading" heading={`What's Included in ${s.name}`} />
+            <Prose paragraphs={overview} />
+          </div>
+          {included.length > 0 && (
+            <div class="lg:col-span-5">
+              <div data-reveal="lift" class="rounded-lg border border-line bg-white p-6 shadow-sm lg:p-8">
+                <p class="eyebrow mb-4">Included</p>
+                <ul class="space-y-5">
+                  {included.map((item) => (
+                    <li class="flex items-start gap-3">
+                      <Icon name="check" size={20} class="mt-1 shrink-0 text-gold-700" />
+                      <div>
+                        <h3 class="text-h4">{item.title}</h3>
+                        <p class="mt-1 text-muted" set:html={renderInline(item.text)} />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
+      </Container>
+    </Section>
+  )}
+
+  {tone.process && (
+    <Section tone={tone.process} labelledby="process-heading">
+      <Container>
+        <SectionHeader id="process-heading" heading={`Our ${s.name} Process`} />
+        <ol class="grid gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3">
+          {process.map((step, i) => (
+            <li>
+              <StepCard number={i + 1} title={step.title} text={step.text} index={i % 3} last />
+            </li>
+          ))}
+        </ol>
+      </Container>
+    </Section>
+  )}
+
+  {tone.benefits && (
+    <Section tone={tone.benefits} labelledby="benefits-heading">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div class="lg:col-span-7">
+            <SectionHeader id="benefits-heading" heading={s.benefitsHeading} />
+            <Prose paragraphs={benefits} />
+          </div>
+          {benefitPoints.length > 0 && (
+            <div class="grid gap-4 self-start sm:grid-cols-2 lg:col-span-5">
+              {benefitPoints.map((p, i) => (
+                <FeatureCard icon="check" title={p.title} text={p.text} index={i} onCream={tone.benefits === 'cream'} />
+              ))}
+            </div>
+          )}
+        </div>
+      </Container>
+    </Section>
+  )}
+
+  {tone.who && (
+    <Section tone={tone.who} labelledby="who-heading">
+      <Container>
+        <SectionHeader id="who-heading" heading={s.whoForHeading} lead={showOptional(s.whoFor.intro) ? s.whoFor.intro : undefined} />
+        <ul class="grid gap-x-12 gap-y-6 md:grid-cols-2">
+          {whoItems.map((item, i) => (
+            <li data-reveal style={`--i:${i % 4}`} class="flex items-start gap-3">
+              <Icon name="check" size={20} class="mt-1 shrink-0 text-gold-700" />
+              <div>
+                <h3 class="text-h4">{item.title}</h3>
+                <p class="mt-1 text-muted" set:html={renderInline(item.text)} />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </Section>
+  )}
+
+  <TextEstimatePanel
+    tone={tone.estimate}
+    heading="How Getting an Estimate Works"
+    smsMessage={s.smsMessage}
+    helperHref={`/free-estimate?service=${s.slug}`}
+  />
+
+  {tone.faq && (
+    <Section tone={tone.faq} labelledby="faq-heading">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div class="lg:col-span-5">
+            <SectionHeader id="faq-heading" heading={`${s.name} FAQs`} />
+          </div>
+          <div class="lg:col-span-7"><Faq items={faq} /></div>
+        </div>
+      </Container>
+    </Section>
+  )}
+
+  <Section tone={tone.related} labelledby="related-heading">
+    <Container>
+      <SectionHeader id="related-heading" heading="Related Services" />
+      <div class="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
+        {related.map((r, i) => <ServiceCard service={r} index={i} />)}
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone={tone.areas} labelledby="areas-heading">
+    <Container>
+      <SectionHeader
+        id="areas-heading"
+        heading={`${s.name} Across the Las Vegas Valley`}
+        lead={`We provide ${lower} in these areas and everywhere else in the Valley.`}
+      />
+      <ul data-reveal class="flex flex-wrap gap-3">
+        {featured.map((a) => <li><AreaChip area={a!} /></li>)}
+      </ul>
+      <p class="mt-8"><Button variant="link" href={withBase('/service-areas')}>All service areas</Button></p>
+    </Container>
+  </Section>
+
+  <CtaBand heading={ctaHeading} smsMessage={s.smsMessage} />
+</BaseLayout>

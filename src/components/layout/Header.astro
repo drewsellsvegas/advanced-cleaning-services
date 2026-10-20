@@ -1,0 +1,142 @@
+---
+import { withBase } from '../../lib/paths';
+import { Picture } from 'astro:assets';
+import logo from '../../assets/brand/logo-horizontal.png';
+import Container from '../ui/Container.astro';
+import Icon from '../ui/Icon.astro';
+import Button from '../ui/Button.astro';
+import CallButton from '../ui/CallButton.astro';
+import TextButton from '../ui/TextButton.astro';
+import { getAreas, getServicesByGroup } from '../../lib/data';
+import { telHref, phoneDisplay, callLabel, callAria } from '../../lib/contact';
+import site from '../../data/site.json';
+
+// Sticky header (PLAN 3.12): 64px base / 76px lg, fixed heights, no shrink on scroll.
+// Desktop menus are driven by src/scripts/menus.ts (aria-expanded); without JS they open via :hover / :focus-within.
+interface Props {
+  path?: string;
+}
+const { path = '/' } = Astro.props;
+const groups = await getServicesByGroup();
+const areas = await getAreas();
+const current = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`) ? 'page' : undefined;
+const links = [
+  { href: '/free-estimate', label: 'Free Estimate', xlOnly: true },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' }
+];
+---
+<header id="site-header" class="site-header sticky top-0 z-50 h-16 border-b border-line bg-white lg:h-[76px]">
+  <Container class="relative flex h-full items-center gap-4">
+    <a href={withBase('/')} aria-label={`${site.name} home`} class="flex shrink-0 items-center">
+      <Picture
+        src={logo}
+        alt=""
+        formats={['avif', 'webp']}
+        widths={[180, 220, 360, 440]}
+        sizes="(min-width: 1024px) 220px, 180px"
+        width={220}
+        height={44}
+        loading="eager"
+        decoding="async"
+        class="h-9 w-auto lg:h-11"
+      />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav aria-label="Primary" class="hidden h-full lg:ml-6 lg:block xl:ml-10">
+      <ul class="flex h-full items-center gap-5 xl:gap-8">
+        <li class="menu-item" data-menu>
+          <button type="button" class="nav-link" aria-expanded="false" aria-controls="menu-services">
+            Services<Icon name="chevron-down" size={16} class="chev" />
+          </button>
+          <div id="menu-services" class="menu-panel inset-x-0 mx-auto w-[760px]">
+            <div class="mb-4 border-b border-line pb-3">
+              <a href={withBase('/services')} class="text-h4 font-semibold text-ink hover:underline">Services overview</a>
+            </div>
+            <div class="grid grid-cols-3 gap-6">
+              {groups.map((g) => (
+                <div>
+                  <p class="eyebrow mb-2 px-2">{g.group}</p>
+                  <ul>
+                    {g.services.map((s) => (
+                      <li>
+                        <a href={withBase(`/services/${s.slug}`)} class="menu-row">
+                          <Icon name={s.icon} size={20} class="shrink-0 text-gold-700" />{s.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div class="mt-5 flex items-center justify-between gap-4 border-t border-line pt-4">
+              <a href={withBase('/services')} class="btn btn-link text-small">View all services<Icon name="arrow-right" size={16} class="btn-arrow" /></a>
+              <div class="flex items-center gap-3">
+                <p class="text-small text-ink-soft">Not sure? Text us a photo</p>
+                <TextButton size="sm" />
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="menu-item relative" data-menu>
+          <button type="button" class="nav-link" aria-expanded="false" aria-controls="menu-areas">
+            Service Areas<Icon name="chevron-down" size={16} class="chev" />
+          </button>
+          <div id="menu-areas" class="menu-panel left-0 w-[420px]">
+            <ul class="grid grid-cols-2 gap-x-4">
+              {areas.map((a) => (
+                <li>
+                  <a href={withBase(`/service-areas/${a.slug}`)} class="menu-row">
+                    <Icon name="map-pin" size={20} class="shrink-0 text-gold-700" />{a.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div class="mt-4 border-t border-line pt-4">
+              <a href={withBase('/service-areas')} class="btn btn-link text-small">All service areas<Icon name="arrow-right" size={16} class="btn-arrow" /></a>
+            </div>
+          </div>
+        </li>
+        {links.map((l) => (
+          <li class:list={['menu-item', l.xlOnly && 'hidden xl:flex']}>
+            <a href={withBase(l.href)} class="nav-link" aria-current={current(l.href)}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Desktop actions -->
+    <div class="ml-auto hidden items-center gap-5 lg:flex">
+      <a
+        href={telHref()}
+        aria-label={callAria(phoneDisplay)}
+        class="hidden items-center gap-2 text-nav font-semibold text-ink hover:underline xl:flex"
+      >
+        <Icon name="phone" size={20} class="text-gold-700" />{phoneDisplay}
+      </a>
+      <CallButton variant="dark" label="" class="btn-icon xl:hidden" />
+      <Button variant="primary" href={withBase('/free-estimate')}>Free Estimate</Button>
+    </div>
+
+    <!-- Below lg: call + menu buttons -->
+    <div class="ml-auto flex items-center gap-2 lg:hidden">
+      <a href={telHref()} aria-label={callLabel} class="btn btn-dark btn-icon"><Icon name="phone" size={20} /></a>
+      <button
+        type="button"
+        id="menu-toggle"
+        class="btn btn-outline btn-icon js-only"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <Icon name="menu" size={24} class="menu-icon-open" />
+        <Icon name="x" size={24} class="menu-icon-close" />
+      </button>
+      <a href="#footer-nav" class="btn btn-outline btn-icon no-js-only" aria-label="Menu (jumps to the site links in the footer)">
+        <Icon name="menu" size={24} />
+      </a>
+    </div>
+  </Container>
+</header>

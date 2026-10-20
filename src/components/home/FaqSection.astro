@@ -1,0 +1,34 @@
+---
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import Faq from '../ui/Faq.astro';
+import CallButton from '../ui/CallButton.astro';
+import TextButton from '../ui/TextButton.astro';
+import { getAreas } from '../../lib/data';
+import { homeFaq } from '../../lib/home-faq';
+
+// Home FAQ (PLAN 6.9). Two columns on lg: header + contact prompt left, accordion right.
+interface Props { tone?: 'white' | 'cream' }
+const { tone = 'white' } = Astro.props;
+const items = homeFaq(await getAreas());
+---
+<Section tone={tone} labelledby="faq-heading">
+  <Container>
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
+      <div class="lg:col-span-5">
+        <div data-reveal>
+          <p class="eyebrow mb-3">FAQ</p>
+          <h2 id="faq-heading">Common Questions</h2>
+          <p class="lead mt-4">Still have a question? Call or text us.</p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <TextButton />
+            <CallButton variant="outline" label="Call Now" />
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <Faq items={items} />
+      </div>
+    </div>
+  </Container>
+</Section>

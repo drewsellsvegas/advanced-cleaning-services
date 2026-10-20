@@ -1,0 +1,32 @@
+---
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import { isSet } from '../../lib/placeholder';
+import { renderInline } from '../../lib/text';
+import { visibleReviews } from '../../lib/sections';
+
+// Reviews (PLAN 6.8). Real entries only in production; dev also shows the placeholder sample. No stars, counts or AggregateRating.
+interface Props { tone?: 'white' | 'cream' }
+const { tone = 'cream' } = Astro.props;
+const reviews = visibleReviews().slice(0, 3);
+---
+{reviews.length > 0 && (
+  <Section tone={tone} labelledby="reviews-heading">
+    <Container>
+      <SectionHeader id="reviews-heading" eyebrow="Reviews" heading="What Customers Say" />
+      <div class="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
+        {reviews.map((r, i) => (
+          <figure data-reveal style={`--i:${i}`} class="flex flex-col rounded-lg border border-line bg-white p-6 shadow-sm">
+            <blockquote class="flex-1 text-ink"><p set:html={renderInline(r.text)} /></blockquote>
+            <figcaption class="mt-5 text-small">
+              <span class="block font-semibold text-ink" set:html={renderInline(r.name)} />
+              <span class="block text-muted" set:html={renderInline(r.area)} />
+              {isSet(r.sourceUrl) && <a href={r.sourceUrl} rel="noopener" class="link mt-1 inline-block">Read on {r.source}</a>}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </Container>
+  </Section>
+)}

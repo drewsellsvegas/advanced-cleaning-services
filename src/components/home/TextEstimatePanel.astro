@@ -1,0 +1,77 @@
+---
+import { withBase } from '../../lib/paths';
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import StepCard from '../ui/StepCard.astro';
+import Button from '../ui/Button.astro';
+import CallButton from '../ui/CallButton.astro';
+import TextButton from '../ui/TextButton.astro';
+import { phoneDisplay } from '../../lib/contact';
+import { renderInline } from '../../lib/text';
+import { showOptional } from '../../lib/placeholder';
+
+// Reusable text-estimate panel (PLAN 6.4, reused on service/area/hub pages). Gold-50 panel inside a section.
+// Step 3 ends at "replies by text with your estimate." until Q5 gives a typical reply time.
+interface Props {
+  heading?: string;
+  headingLevel?: 2 | 3;
+  /** Page-specific message for the Text button. Defaults to the site message. */
+  smsMessage?: string;
+  tone?: 'white' | 'cream';
+  /** Link target for "estimate helper" (service pages add ?service={slug}). */
+  helperHref?: string;
+  id?: string;
+  /** Replaces the default intro paragraph (area pages pass their estimateCopy). Ignored while it is still a placeholder in production. */
+  lead?: string;
+}
+const {
+  heading = 'The Fastest Way to a Free Estimate: Text Us Photos',
+  headingLevel = 2,
+  smsMessage,
+  tone = 'cream',
+  helperHref = '/free-estimate',
+  id = 'estimate-heading',
+  lead
+} = Astro.props;
+const Heading = `h${headingLevel}` as 'h2';
+const steps = [
+  { title: 'Take 2–4 photos', text: 'Wide shots of the room or area, plus close-ups of any stains or problem spots.' },
+  { title: 'Text them with your ZIP', text: 'Add a quick note about what you want cleaned and roughly how big the area is.' },
+  { title: 'Get your estimate', text: 'Miguel reviews the photos and replies by text with your estimate.' }
+];
+const StepHeading = (headingLevel + 1) as 3 | 4;
+---
+import { withBase } from '../../lib/paths';
+<Section tone={tone} labelledby={id}>
+  <Container>
+    <div data-reveal="lift" class="rounded-xl border border-gold-100 bg-gold-50 p-6 lg:p-12">
+      <div class="grid gap-10 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <p class="eyebrow mb-3">Fastest estimate</p>
+          <Heading id={id}>{heading}</Heading>
+          {lead && showOptional(lead) ? (
+            <p class="lead mt-4" set:html={renderInline(lead)} />
+          ) : (
+            <p class="lead mt-4">
+              Skip the phone tag. Snap a few photos of the carpet, tile, furniture or concrete you want cleaned, text them to {phoneDisplay} with your ZIP code, and Miguel will reply with an estimate.
+            </p>
+          )}
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <TextButton size="lg" variant="primary" label="Text Photos Now" icon="camera" message={smsMessage} />
+            <CallButton size="lg" variant="outline" label={`Call ${phoneDisplay}`} />
+          </div>
+          <p class="mt-5">
+            <Button variant="link" href={withBase(helperHref)} class="items-start text-left leading-snug">Want help writing the text? Use our estimate helper</Button>
+          </p>
+        </div>
+        <ol class="space-y-6 self-center">
+          {steps.map((s, i) => (
+            <li>
+              <StepCard number={i + 1} title={s.title} text={s.text} level={StepHeading} index={i + 1} last />
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </Container>
+</Section>

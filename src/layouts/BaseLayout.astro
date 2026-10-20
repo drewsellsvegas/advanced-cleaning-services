@@ -1,0 +1,77 @@
+---
+import '../styles/global.css';
+import Head from '../components/seo/Head.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+import UtilityStrip from '../components/layout/UtilityStrip.astro';
+import Header from '../components/layout/Header.astro';
+import MobileMenu from '../components/layout/MobileMenu.astro';
+import Footer from '../components/layout/Footer.astro';
+import StickyBar from '../components/layout/StickyBar.astro';
+import { getAreas, getServices } from '../lib/data';
+import { breadcrumbList, graph, localBusiness, webSite } from '../lib/schema';
+import type { Crumb, JsonLdNode } from '../lib/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Site path used for the canonical URL, e.g. "/" or "/services/carpet-cleaning". */
+  path: string;
+  ogImage?: string;
+  noindex?: boolean;
+  /** Full trail including Home, e.g. Home / Services / Carpet Cleaning. Adds BreadcrumbList JSON-LD. */
+  breadcrumbs?: Crumb[];
+  /** Extra JSON-LD nodes for this page (Service, FAQPage, ...). */
+  schema?: (JsonLdNode | undefined)[];
+  /** Page-specific text message; consumed by the sticky mobile bar (Task 10). */
+  smsMessage?: string;
+  /** 404 gets no schema at all. */
+  noSchema?: boolean;
+}
+const { title, description, path, ogImage, noindex, breadcrumbs, schema = [], smsMessage, noSchema = false } = Astro.props;
+
+const [services, areas] = await Promise.all([getServices(), getAreas()]);
+const data = noSchema
+  ? undefined
+  : graph([
+      localBusiness(services, areas),
+      webSite(),
+      ...schema,
+      breadcrumbs?.length ? breadcrumbList(breadcrumbs) : undefined
+    ]);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head title={title} description={description} path={path} ogImage={ogImage} noindex={noindex} />
+    <meta name="generator" content={Astro.generator} />
+    {data && <JsonLd data={data} />}
+  </head>
+  <body class="relative">
+    <div id="top-sentinel" aria-hidden="true" class="pointer-events-none absolute left-0 top-0 h-2 w-px"></div>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-white"
+      >Skip to content</a
+    >
+    <p id="sms-hint" hidden>Opens your text messages</p>
+    <slot name="header">
+      <UtilityStrip />
+      <Header path={path} />
+      <MobileMenu smsMessage={smsMessage} />
+    </slot>
+    <main id="main" data-menu-inert>
+      <slot />
+    </main>
+    <slot name="footer">
+      <Footer />
+    </slot>
+    <slot name="bottom-bar">
+      <StickyBar path={path} smsMessage={smsMessage} />
+    </slot>
+    <script>
+      import '../scripts/menus.ts';
+      import '../scripts/mobile-menu.ts';
+      import '../scripts/reveal.ts';
+    </script>
+  </body>
+</html>

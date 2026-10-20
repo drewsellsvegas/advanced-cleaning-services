@@ -1,0 +1,32 @@
+---
+import { withBase } from '../lib/paths';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Section from '../components/ui/Section.astro';
+import Button from '../components/ui/Button.astro';
+import TextButton from '../components/ui/TextButton.astro';
+import { getServices } from '../lib/data';
+
+// 404 (PLAN 2.3): noindex, no schema, no breadcrumbs, excluded from the sitemap by astro.config.mjs.
+const title = 'Page Not Found | Advanced Cleaning';
+const description = 'This page could not be found. Call or text Advanced Cleaning Services at 702-350-5775 or browse our Las Vegas cleaning services.';
+const popular = (await getServices()).slice(0, 6);
+---
+<BaseLayout title={title} description={description} path="/404" noindex noSchema>
+  <Section tone="white" padding="hero" labelledby="nf-heading">
+    <Container>
+      <p class="eyebrow mb-4">Error 404</p>
+      <h1 id="nf-heading" class="max-w-[22ch]">We couldn't find that page</h1>
+      <p class="lead mt-5 max-w-[52ch]">The link may be old or mistyped. Head back home, browse our services, or text us and we'll help.</p>
+      <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <Button variant="dark" size="lg" href={withBase('/')}>Home</Button>
+        <Button variant="outline" size="lg" href={withBase('/services')}>Services</Button>
+        <TextButton size="lg" />
+      </div>
+      <h2 class="mb-5 mt-14 text-h3">Popular services</h2>
+      <ul class="grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+        {popular.map((s) => <li><a class="link" href={withBase(`/services/${s.slug}`)}>{s.name}</a></li>)}
+      </ul>
+    </Container>
+  </Section>
+</BaseLayout>

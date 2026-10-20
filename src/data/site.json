@@ -1,0 +1,48 @@
+{
+  "name": "Advanced Cleaning Services",
+  "shortName": "Advanced Cleaning",
+  "owner": "Miguel",
+  "url": "https://advancedcleaninglv.example",
+  "phone": {
+    "display": "702-350-5775",
+    "e164": "+17023505775",
+    "schema": "+1-702-350-5775"
+  },
+  "sms": {
+    "defaultMessage": "Hi Miguel, I'd like a free estimate. I'll send photos. My ZIP code is: "
+  },
+  "email": "[PLACEHOLDER: email]",
+  "hours": {
+    "display": "[PLACEHOLDER: business hours]",
+    "schema": []
+  },
+  "serviceAreaLabel": "the Las Vegas Valley, NV",
+  "licenseNumber": "[PLACEHOLDER: Nevada business license number]",
+  "insured": "[PLACEHOLDER: licensed and insured? yes/no]",
+  "googleBusinessProfileUrl": "[PLACEHOLDER: Google Business Profile URL]",
+  "social": {},
+  "languages": ["English"],
+  "aboutReady": false,
+  "launchDate": "[PLACEHOLDER: launch date]",
+  "reviews": [
+    {
+      "text": "[PLACEHOLDER: reviews]",
+      "name": "[PLACEHOLDER: reviewer name]",
+      "area": "[PLACEHOLDER: reviewer area]",
+      "source": "[PLACEHOLDER: review source]",
+      "sourceUrl": "[PLACEHOLDER: review URL]",
+      "placeholder": true
+    }
+  ],
+  "beforeAfter": [
+    {
+      "service": "carpet-cleaning",
+      "before": "src/assets/photos/before-after/sample-before.jpg",
+      "after": "src/assets/photos/before-after/sample-after.jpg",
+      "altBefore": "[PLACEHOLDER: photos] Sample before photo",
+      "altAfter": "[PLACEHOLDER: photos] Sample after photo",
+      "caption": "[PLACEHOLDER: photos] Sample before and after caption",
+      "placeholder": true
+    }
+  ]
+}

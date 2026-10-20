@@ -1,0 +1,28 @@
+---
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import Breadcrumbs from '../ui/Breadcrumbs.astro';
+import { renderInline } from '../../lib/text';
+import type { Crumb } from '../../lib/schema';
+
+// Plain page opener for hubs and utility pages: breadcrumbs, H1, lead, optional extras in the slot (buttons).
+// No animation on the H1 (PLAN 4.3). The lead and slot use the on-load .hero-in keyframe.
+interface Props {
+  crumbs: Crumb[];
+  h1: string;
+  lead?: string;
+  tone?: 'white' | 'cream';
+  headingId?: string;
+  /** Bottom padding preset: "tight" when another section follows directly. */
+  tight?: boolean;
+}
+const { crumbs, h1, lead, tone = 'white', headingId = 'page-heading', tight = false } = Astro.props;
+---
+<Section tone={tone} padding="none" class:list={['pt-4', tight ? 'pb-10 lg:pb-14' : 'pb-16 lg:pb-24']} labelledby={headingId}>
+  <Container>
+    <Breadcrumbs crumbs={crumbs} class="mb-6 lg:mb-8" />
+    <h1 id={headingId} class="max-w-[24ch]">{h1}</h1>
+    {lead && <p class="lead hero-in mt-5 max-w-[60ch]" style="--hero-i:1" set:html={renderInline(lead)} />}
+    <div class="hero-in empty:hidden" style="--hero-i:2"><slot /></div>
+  </Container>
+</Section>

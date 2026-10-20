@@ -1,0 +1,17 @@
+---
+import Button from './Button.astro';
+import { smsHref, textAria } from '../../lib/contact';
+// "Text Us" button. The sms: href comes from smsHref(); pass `message` for service/area pages,
+// otherwise the page-level message from BaseLayout is not available here, so the site default is used.
+// aria-describedby points at the single #sms-hint element rendered by BaseLayout ("Opens your text messages").
+interface Props {
+  variant?: 'primary' | 'dark' | 'outline' | 'ghost-light' | 'link';
+  size?: 'sm' | 'md' | 'lg';
+  label?: string;
+  message?: string;
+  icon?: string;
+  class?: string;
+}
+const { variant = 'primary', size = 'md', label = 'Text Us', message, icon = 'message-square-text', class: className } = Astro.props;
+---
+<Button variant={variant} size={size} href={smsHref(message)} icon={icon} aria-label={textAria(label)} aria-describedby="sms-hint" class={className}>{label}</Button>

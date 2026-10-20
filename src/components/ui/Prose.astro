@@ -1,0 +1,12 @@
+---
+import { renderInline } from '../../lib/text';
+// Renders a paragraph array through the inline-link helper (PLAN 5.3).
+interface Props {
+  paragraphs: string[];
+  class?: string;
+}
+const { paragraphs, class: className } = Astro.props;
+---
+<div class:list={['space-y-5', className]}>
+  {paragraphs.map((p) => <p set:html={renderInline(p)} />)}
+</div>

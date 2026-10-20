@@ -1,0 +1,612 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens (PLAN.md 3.2, 3.4, 3.5, 3.6, 4.1)
+------------------------------------------------------------------- */
+@theme {
+  /* Colors (3.2) */
+  --color-ink: #111111;
+  --color-ink-soft: #3f3f46;
+  --color-muted: #52525b;
+  --color-subtle: #71717a;
+  --color-white: #ffffff;
+  --color-cream: #faf8f4;
+  --color-gold-50: #fdf8ec;
+  --color-gold-100: #f5e9cc;
+  --color-gold-500: #cb9a36;
+  --color-gold-600: #b5862a;
+  --color-gold-700: #8a6516;
+  --color-line: #e7e5e4;
+  --color-line-strong: #78716c;
+  --color-night: #0e0e0e;
+  --color-night-text: #d4d4d8;
+  --color-night-muted: #a1a1aa;
+
+  /* Font (3.4) */
+  --font-sans: var(--font-jakarta), Arial, sans-serif;
+
+  /* Type scale (3.5) */
+  --text-display: clamp(2.375rem, 1.6rem + 3.6vw, 4.25rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.03em;
+  --text-display--font-weight: 800;
+  --text-h1: clamp(2.125rem, 1.6rem + 2.4vw, 3.5rem);
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h1--font-weight: 800;
+  --text-h2: clamp(1.75rem, 1.35rem + 1.8vw, 2.75rem);
+  --text-h2--line-height: 1.12;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 700;
+  --text-h3: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 700;
+  --text-h4: 1.125rem;
+  --text-h4--line-height: 1.35;
+  --text-h4--font-weight: 600;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --text-lead--line-height: 1.6;
+  --text-body: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --text-body--line-height: 1.7;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-small--font-weight: 500;
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.4;
+  --text-eyebrow--letter-spacing: 0.12em;
+  --text-eyebrow--font-weight: 700;
+  --text-button: 1rem;
+  --text-button--line-height: 1;
+  --text-button--font-weight: 600;
+  --text-nav: 0.9375rem;
+  --text-nav--line-height: 1;
+  --text-nav--font-weight: 500;
+
+  /* Radius (3.6) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Shadows (3.6) */
+  --shadow-sm: 0 1px 2px rgb(17 17 17 / 0.04), 0 1px 3px rgb(17 17 17 / 0.06);
+  --shadow-md: 0 4px 12px -2px rgb(17 17 17 / 0.06), 0 12px 32px -8px rgb(17 17 17 / 0.1);
+  --shadow-gold: 0 6px 20px -6px rgb(203 154 54 / 0.45);
+
+  /* Motion (4.1) */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --duration-fast: 200ms;
+  --duration-menu: 180ms;
+  --duration-reveal: 600ms;
+}
+
+/* Plain-CSS duplicates for use outside utilities (e.g. var(--dur-reveal)) */
+:root {
+  --dur-fast: 200ms;
+  --dur-menu: 180ms;
+  --dur-reveal: 600ms;
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------- */
+@layer base {
+  html {
+    /* Keeps layout steady when scroll is locked (mobile menu) on browsers with classic scrollbars. */
+    scrollbar-gutter: stable;
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-white);
+    color: var(--color-ink);
+    font-size: var(--text-body);
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Room for the sticky mobile bottom bar (3.14). Static, so nothing shifts. */
+  @media (width < 64rem) {
+    body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+
+  h1, h2, h3, h4 {
+    color: var(--color-ink);
+  }
+  h1 {
+    font-size: var(--text-h1);
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  h2 {
+    font-size: var(--text-h2);
+    line-height: 1.12;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    max-width: 24ch;
+  }
+  h3 {
+    font-size: var(--text-h3);
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  h4 {
+    font-size: var(--text-h4);
+    line-height: 1.35;
+    font-weight: 600;
+  }
+  p {
+    text-wrap: pretty;
+    max-width: 68ch;
+  }
+
+  ::selection {
+    background: var(--color-gold-50);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-700);
+    outline-offset: 3px;
+  }
+  .on-night :focus-visible {
+    outline-color: var(--color-gold-500);
+  }
+
+  /* Anchored headings/sections clear the sticky header (64px base, 76px lg) plus breathing room. */
+  [id] { scroll-margin-top: 5rem; }
+  @media (width >= 64rem) { [id] { scroll-margin-top: 6rem; } }
+
+  img, svg, video {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Utilities and components
+------------------------------------------------------------------- */
+@utility sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@utility container-site {
+  width: 100%;
+  max-width: 75rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 48rem) { padding-inline: 1.5rem; }
+  @media (width >= 64rem) { padding-inline: 2rem; }
+}
+
+@utility eyebrow {
+  font-size: var(--text-eyebrow);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold-700);
+}
+
+@utility lead {
+  font-size: var(--text-lead);
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+@utility text-display-h1 {
+  font-size: var(--text-display);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+@layer components {
+  /* Buttons (3.8). Hover darkening is an overlay whose opacity changes. */
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding-inline: 1.5rem;
+    border-radius: 9999px;
+    font-size: var(--text-button);
+    line-height: 1;
+    font-weight: 600;
+    text-decoration: none;
+    overflow: hidden;
+    isolation: isolate;
+    cursor: pointer;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:hover::before { opacity: var(--btn-overlay-opacity, 0.08); }
+  .btn:active { transform: translateY(0) scale(0.98); transition-duration: 100ms; }
+  .btn-lg { min-height: 56px; padding-inline: 1.75rem; }
+  .btn-sm { min-height: 40px; padding-inline: 1rem; font-size: 0.9375rem; }
+  /* Round icon-only button, 44x44 (3.12). Needs an aria-label on the element. */
+  .btn-icon { width: 44px; height: 44px; min-height: 44px; padding: 0; }
+
+  .btn-primary { background: var(--color-gold-500); color: var(--color-ink); box-shadow: var(--shadow-gold); }
+  .btn-primary::before { background: #000; --btn-overlay-opacity: 0.08; }
+
+  .btn-dark { background: var(--color-ink); color: #fff; }
+  .btn-dark::before { background: #fff; --btn-overlay-opacity: 0.1; }
+
+  .btn-outline { background: #fff; color: var(--color-ink); border: 1px solid var(--color-line-strong); }
+  .btn-outline::before { background: var(--color-ink); --btn-overlay-opacity: 0.04; }
+
+  .btn-ghost-light { background: transparent; color: #fff; border: 1px solid rgb(255 255 255 / 0.35); }
+  .btn-ghost-light::before { background: #fff; --btn-overlay-opacity: 0.1; }
+  .btn-ghost-light:hover { transform: none; }
+
+  .btn-link {
+    min-height: 0;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    color: var(--color-gold-700);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    overflow: visible;
+    gap: 0.375rem;
+  }
+  .btn-link::before { display: none; }
+  .btn-link:hover { transform: none; }
+  .btn-link .btn-arrow { transition: transform var(--dur-fast) var(--ease-out); }
+  .btn-link:hover .btn-arrow { transform: translateX(4px); }
+
+  /* Service card (3.9) */
+  .card-service {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform 250ms var(--ease-out);
+  }
+  @media (width >= 64rem) { .card-service { padding: 1.75rem; } }
+  .card-service::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 250ms var(--ease-out);
+  }
+  .card-service:hover { transform: translateY(-4px); }
+  .card-service:hover::before { opacity: 1; }
+  .card-service a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+  /* The link's stretched ::after carries the focus ring so it surrounds the whole card. */
+  .card-service a:focus-visible { outline: none; }
+  .card-service a:focus-visible::after { outline: 2px solid var(--color-gold-700); outline-offset: 3px; }
+  .card-service .btn-arrow { transition: transform 250ms var(--ease-out); }
+  .card-service:hover .btn-arrow { transform: translateX(4px); }
+
+  /* No-JS / JS visibility helpers (4.4) */
+  html:not(.js) .js-only { display: none !important; }
+  html.js .no-js-only { display: none !important; }
+
+  /* Header (3.12): scroll shadow is a pseudo layer whose opacity toggles with .is-scrolled. */
+  .site-header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    box-shadow: var(--shadow-sm);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+  .site-header.is-scrolled::after { opacity: 1; }
+
+  /* Nav link with a gold underline bar that scales in from the left. */
+  .nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    height: 44px;
+    font-size: var(--text-nav);
+    line-height: 1;
+    font-weight: 500;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    height: 2px;
+    background: var(--color-gold-500);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .nav-link:hover, .nav-link[aria-expanded="true"], .nav-link[aria-current="page"] { color: var(--color-ink); }
+  .nav-link:hover::after, .nav-link:focus-visible::after,
+  .nav-link[aria-expanded="true"]::after, .nav-link[aria-current="page"]::after { transform: scaleX(1); }
+  .nav-link .chev { transition: transform var(--dur-fast) var(--ease-out); }
+  .nav-link[aria-expanded="true"] .chev { transform: rotate(180deg); }
+  /* The nav item fills the header height so the pointer never leaves it on the way to the panel. */
+  .menu-item { display: flex; align-items: center; height: 100%; }
+
+  /* Mega menu / dropdown panels (3.12). visibility is the only discrete toggle, delayed on close. */
+  .menu-panel {
+    position: absolute;
+    top: 100%;
+    z-index: 60;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 1.5rem;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 120ms var(--ease-in),
+      transform 120ms var(--ease-in),
+      visibility 0s linear 120ms;
+  }
+  .nav-link[aria-expanded="true"] ~ .menu-panel,
+  html:not(.js) .menu-item:hover > .menu-panel,
+  html:not(.js) .menu-item:focus-within > .menu-panel {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--dur-menu) var(--ease-out),
+      transform var(--dur-menu) var(--ease-out),
+      visibility 0s;
+  }
+  .menu-row {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9375rem;
+    line-height: 1.3;
+    font-weight: 500;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  .menu-row::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--color-cream);
+    opacity: 0;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+  .menu-row:hover::before, .menu-row:focus-visible::before { opacity: 1; }
+
+  /* Menu button icon swap (menu -> x) follows aria-expanded. */
+  #menu-toggle .menu-icon-close { display: none; }
+  #menu-toggle[aria-expanded="true"] .menu-icon-open { display: none; }
+  #menu-toggle[aria-expanded="true"] .menu-icon-close { display: block; }
+
+  /* Mobile menu sheet (3.13): opacity + translateY, visibility is the only discrete toggle. */
+  .mobile-menu {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity var(--dur-fast) var(--ease-in),
+      transform var(--dur-fast) var(--ease-in),
+      visibility 0s linear var(--dur-fast);
+  }
+  .mobile-menu.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out),
+      visibility 0s;
+  }
+  .menu-acc summary { list-style: none; }
+  .menu-acc summary::-webkit-details-marker { display: none; }
+  .menu-acc .chev { transition: transform var(--dur-fast) var(--ease-out); }
+  .menu-acc[open] .chev { transform: rotate(180deg); }
+
+  /* Sticky bottom bar (3.14): 1px top line drawn as a shadow so the bar is exactly 68px tall. */
+  .bottom-bar {
+    box-shadow:
+      0 -1px 0 var(--color-line),
+      0 -4px 12px -2px rgb(17 17 17 / 0.06),
+      0 -12px 32px -8px rgb(17 17 17 / 0.1);
+  }
+
+  /* Footer link (3.15) */
+  .footer-link {
+    display: inline-block;
+    padding-block: 0.3125rem;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    color: var(--color-muted);
+    text-decoration: none;
+  }
+  .footer-link:hover { color: var(--color-ink); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* Area chip (3.9) */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.875rem;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: 9999px;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    font-weight: 500;
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .chip:hover { transform: translateY(-2px); }
+
+  /* Step card (3.9). The connector line is static and decorative, desktop only. */
+  .step-card { position: relative; }
+  @media (width >= 64rem) {
+    .step-card:not(.step-card-last)::after {
+      content: "";
+      position: absolute;
+      top: 1.25rem;
+      left: 3.5rem;
+      right: -1rem;
+      height: 1px;
+      background: var(--color-line);
+    }
+  }
+
+  /* FAQ accordion (3.9): plus rotates 45deg when open, answer fades in (opacity only, no height animation). */
+  .faq-item { border-bottom: 1px solid var(--color-line); }
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1.25rem;
+    font-size: 1.125rem;
+    line-height: 1.35;
+    font-weight: 600;
+    color: var(--color-ink);
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item .faq-plus { flex-shrink: 0; color: var(--color-gold-700); transition: transform var(--dur-fast) var(--ease-out); }
+  .faq-item[open] .faq-plus { transform: rotate(45deg); }
+  .faq-item .faq-answer { padding-bottom: 1.25rem; color: var(--color-muted); }
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes faq-fade { from { opacity: 0; } to { opacity: 1; } }
+    .faq-item[open] .faq-answer { animation: faq-fade 200ms var(--ease-out) both; }
+  }
+
+  /* Form fields (3.9): 48px, radius 12px, 1px line-strong border, 16px text so iOS does not zoom. */
+  .field {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 0 0.875rem;
+    background: #fff;
+    border: 1px solid var(--color-line-strong);
+    border-radius: var(--radius-md);
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--color-ink);
+  }
+  textarea.field { min-height: 112px; padding-block: 0.75rem; resize: vertical; }
+  .field:focus-visible { outline: 2px solid var(--color-gold-700); outline-offset: 2px; }
+  .field-label { display: block; margin-bottom: 0.375rem; font-size: 0.875rem; line-height: 1.5; font-weight: 600; color: var(--color-ink); }
+
+  /* Inline prose link (5.3) */
+  .link {
+    color: var(--color-gold-700);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+}
+
+/* Placeholder marker, dev only (5.6). Production builds never render <mark class="ph">. */
+mark.ph {
+  background: #fde047;
+  color: var(--color-ink);
+  padding-inline: 0.15em;
+}
+
+/* ------------------------------------------------------------------
+   Motion (4.2, 4.4)
+------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity var(--dur-reveal) var(--ease-out),
+      transform var(--dur-reveal) var(--ease-out);
+    transition-delay: calc(min(var(--i, 0), 4) * 70ms);
+  }
+  .js [data-reveal="lift"] { transform: translateY(24px); }
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hero entrance (4.3): keyframes on load, not observer-driven */
+  @keyframes hero-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+  .hero-in {
+    animation: hero-in 500ms var(--ease-out) both;
+    animation-delay: calc(var(--hero-i, 1) * 80ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  .menu-panel, .mobile-menu { transform: none !important; }
+  .btn:hover, .btn:active, .chip:hover, .card-service:hover, .btn-link:hover .btn-arrow, .card-service:hover .btn-arrow {
+    transform: none !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

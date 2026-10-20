@@ -1,0 +1,13 @@
+---
+import { withBase } from '../../lib/paths';
+import Icon from './Icon.astro';
+// Area chip (PLAN 3.9): pill link to an area page.
+interface Props {
+  area: { slug: string; name: string };
+  class?: string;
+}
+const { area, class: className } = Astro.props;
+---
+<a href={withBase(`/service-areas/${area.slug}`)} class:list={['chip', className]}>
+  <Icon name="map-pin" size={16} class="text-gold-700" />{area.name}
+</a>

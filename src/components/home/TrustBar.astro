@@ -1,0 +1,30 @@
+---
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import Icon from '../ui/Icon.astro';
+
+// Trust bar (PLAN 6.2). 2x2 on base, 4 across on lg. Item 3 stays "12 services" until Q4 confirms licensed and insured.
+interface Props { tone?: 'white' | 'cream' }
+const { tone = 'cream' } = Astro.props;
+const items = [
+  { icon: 'clipboard-check', label: 'Free estimates', sub: 'No cost to ask' },
+  { icon: 'message-square-text', label: 'Estimates by text', sub: 'Send photos, get a reply' },
+  { icon: 'layers', label: '12 services', sub: 'Carpet to concrete' },
+  { icon: 'map', label: 'Valley-wide', sub: 'Las Vegas to Boulder City' }
+];
+---
+<Section tone={tone} padding="none" class="py-10 md:py-12" aria-label="Why customers choose us">
+  <Container>
+    <ul class="grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 lg:gap-8">
+      {items.map((it, i) => (
+        <li data-reveal style={`--i:${i}`} class="flex flex-col items-start gap-3 md:flex-row md:items-center md:gap-4">
+          <Icon name={it.icon} size={28} class="shrink-0 text-gold-700" />
+          <div>
+            <p class="font-semibold leading-snug text-ink">{it.label}</p>
+            <p class="text-small text-muted">{it.sub}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</Section>

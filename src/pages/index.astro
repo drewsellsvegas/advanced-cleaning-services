@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import TrustBar from '../components/home/TrustBar.astro';
+import ServicesGrid from '../components/home/ServicesGrid.astro';
+import TextEstimatePanel from '../components/home/TextEstimatePanel.astro';
+import BeforeAfter from '../components/home/BeforeAfter.astro';
+import WhyUs from '../components/home/WhyUs.astro';
+import PriceFactors from '../components/home/PriceFactors.astro';
+import Reviews from '../components/home/Reviews.astro';
+import FaqSection from '../components/home/FaqSection.astro';
+import ServiceAreaBlock from '../components/home/ServiceAreaBlock.astro';
+import CtaBand from '../components/home/CtaBand.astro';
+import { getAreas } from '../lib/data';
+import { homeFaq } from '../lib/home-faq';
+import { faqPage } from '../lib/schema';
+import { stripInline } from '../lib/text';
+import { visibleBeforeAfter, visibleReviews } from '../lib/sections';
+
+// Home head content from PLAN 2.3. Sections follow PLAN section 6 order.
+const title = 'Carpet & Tile Cleaning Las Vegas | Advanced Cleaning';
+const description =
+  'Carpet, tile, upholstery and exterior cleaning across the Las Vegas Valley. Call or text Miguel at 702-350-5775 for a free estimate.';
+
+// Backgrounds alternate white/cream; omitted conditional sections (before/after, reviews) shift the tones that follow (PLAN 6).
+// Hero is white, the closing band is night.
+const hasBeforeAfter = visibleBeforeAfter().length > 0;
+const hasReviews = visibleReviews().length > 0;
+const order = ['trust', 'services', 'estimate', hasBeforeAfter && 'beforeAfter', 'why', 'price', hasReviews && 'reviews', 'faq', 'area'].filter(Boolean) as string[];
+const tone = Object.fromEntries(order.map((k, i) => [k, i % 2 === 0 ? 'cream' : 'white'])) as Record<string, 'white' | 'cream'>;
+
+const faq = faqPage(homeFaq(await getAreas()).map((i) => ({ q: i.q, a: stripInline(i.a) })));
+---
+<BaseLayout title={title} description={description} path="/" schema={[faq]}>
+  <Hero />
+  <TrustBar tone={tone.trust} />
+  <ServicesGrid tone={tone.services} />
+  <TextEstimatePanel tone={tone.estimate} />
+  <BeforeAfter tone={tone.beforeAfter} />
+  <WhyUs tone={tone.why} />
+  <PriceFactors tone={tone.price} />
+  <Reviews tone={tone.reviews} />
+  <FaqSection tone={tone.faq} />
+  <ServiceAreaBlock tone={tone.area} />
+  <CtaBand />
+</BaseLayout>

@@ -1,0 +1,41 @@
+---
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import Icon from '../ui/Icon.astro';
+import TextButton from '../ui/TextButton.astro';
+
+// What affects the cost (PLAN 6.7). No prices and no digits anywhere in this section. Q7 minimums/fees go here only if the client states them.
+interface Props { tone?: 'white' | 'cream'; smsMessage?: string }
+const { tone = 'white', smsMessage } = Astro.props;
+const factors = [
+  { title: 'Size of the area', text: 'Rooms, square footage, or number of furniture pieces.' },
+  { title: 'Condition', text: 'Heavy soil, traffic lanes and built-up grime take more time.' },
+  { title: 'Stains and odors', text: 'Pet urine, spills and set-in spots may need extra treatment.' },
+  { title: 'Material', text: 'Wool, delicate fabrics and natural stone need gentler methods.' },
+  { title: 'Access', text: 'Stairs, upper floors and furniture that needs moving.' },
+  { title: 'Exterior surfaces', text: 'Concrete, pavers, oil stains and the size of the area.' }
+];
+---
+<Section tone={tone} labelledby="price-heading">
+  <Container>
+    <SectionHeader
+      id="price-heading"
+      eyebrow="Pricing"
+      heading="What Affects the Cost of Your Cleaning"
+      lead="Every home is different, so we quote each job from your photos instead of publishing one flat price. These are the things that change an estimate."
+    />
+    <ul class="grid gap-x-12 gap-y-7 md:grid-cols-2">
+      {factors.map((f, i) => (
+        <li data-reveal style={`--i:${Math.min(i, 3)}`} class="flex items-start gap-4">
+          <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold-50 text-gold-700"><Icon name="check" size={16} /></span>
+          <p><strong class="font-bold text-ink">{f.title}</strong><span class="mt-1 block text-muted">{f.text}</span></p>
+        </li>
+      ))}
+    </ul>
+    <div data-reveal class="mt-12 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+      <p class="text-lg font-semibold text-ink">The quickest way to know your price: text us photos.</p>
+      <TextButton size="lg" label="Text Photos" icon="camera" message={smsMessage} />
+    </div>
+  </Container>
+</Section>

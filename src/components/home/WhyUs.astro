@@ -1,0 +1,24 @@
+---
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import FeatureCard from '../ui/FeatureCard.astro';
+
+// Why choose us (PLAN 6.6). Card 1 uses the fallback copy until Q5 confirms Miguel answers calls and does the work.
+interface Props { tone?: 'white' | 'cream' }
+const { tone = 'cream' } = Astro.props;
+const cards = [
+  { icon: 'user-round-check', title: 'A local, owner-run business', text: 'Advanced Cleaning Services is run by its owner, Miguel, right here in the Las Vegas Valley.' },
+  { icon: 'message-square-text', title: 'Estimates without the wait', text: 'Text photos and get a free estimate without scheduling an in-home visit first.' },
+  { icon: 'layers', title: 'Inside and out', text: 'Carpet, rugs, upholstery, tile, grout, water extraction, driveways, garages and pressure washing from one company.' },
+  { icon: 'map', title: 'The whole Valley', text: 'From Centennial Hills to Anthem and Boulder City, we come to you.' }
+];
+---
+<Section tone={tone} labelledby="why-heading">
+  <Container>
+    <SectionHeader id="why-heading" eyebrow="Why Advanced Cleaning" heading="Why Las Vegas Homeowners Call Advanced Cleaning" />
+    <div class="grid gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 xl:gap-8">
+      {cards.map((c, i) => <FeatureCard icon={c.icon} title={c.title} text={c.text} index={i} onCream={tone === 'cream'} />)}
+    </div>
+  </Container>
+</Section>

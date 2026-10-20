@@ -1,0 +1,88 @@
+---
+import { withBase } from '../lib/paths';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/page/PageIntro.astro';
+import Container from '../components/ui/Container.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import Icon from '../components/ui/Icon.astro';
+import AreaChip from '../components/ui/AreaChip.astro';
+import Button from '../components/ui/Button.astro';
+import CallButton from '../components/ui/CallButton.astro';
+import TextButton from '../components/ui/TextButton.astro';
+import TextEstimatePanel from '../components/home/TextEstimatePanel.astro';
+import { getAreas } from '../lib/data';
+import { phoneDisplay, telHref, smsHref, callAria, textAria } from '../lib/contact';
+import { showOptional } from '../lib/placeholder';
+import { renderInline } from '../lib/text';
+import site from '../data/site.json';
+
+// Contact (PLAN 2.3 / task 28): Call and Text cards, hours (hidden until set), service area chips, estimate panel. No map, no form.
+const title = 'Contact Us | Call or Text 702-350-5775';
+const description =
+  'Call or text Advanced Cleaning Services at 702-350-5775 for carpet, tile, upholstery and exterior cleaning anywhere in the Las Vegas Valley.';
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Contact', path: '/contact' }
+];
+const areas = await getAreas();
+const showHours = showOptional(site.hours.display);
+// Tones: hero white, call/text cream, hours white (if shown), service area alternates, panel alternates.
+const sequence = ['call', showHours && 'hours', 'area', 'panel'].filter(Boolean) as string[];
+const tone = Object.fromEntries(sequence.map((k, i) => [k, i % 2 === 0 ? 'cream' : 'white'])) as Record<string, 'white' | 'cream'>;
+const numberClass = 'block text-[1.75rem] font-bold leading-tight text-ink hover:underline underline-offset-4';
+---
+<BaseLayout title={title} description={description} path="/contact" breadcrumbs={crumbs}>
+  <PageIntro
+    crumbs={crumbs}
+    h1="Contact Advanced Cleaning Services"
+    lead="Call or text Miguel for a free estimate. Texting photos is the fastest way to get a price."
+    tight
+  />
+
+  <Section tone={tone.call} labelledby="call-heading">
+    <Container>
+      <h2 id="call-heading" class="sr-only">Call or Text</h2>
+      <div class="grid gap-4 md:grid-cols-2 md:gap-6 lg:gap-8">
+        <div data-reveal class="rounded-lg border border-line bg-white p-6 shadow-sm lg:p-8">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-gold-50 text-gold-700"><Icon name="phone" size={24} /></div>
+          <h3 class="mb-2">Call</h3>
+          <a href={telHref()} aria-label={callAria(phoneDisplay)} class={numberClass}>{phoneDisplay}</a>
+          <p class="mb-6 mt-3 text-muted">Talk to Miguel about what you need cleaned.</p>
+          <CallButton label="Call Now" />
+        </div>
+        <div data-reveal style="--i:1" class="rounded-lg border border-line bg-white p-6 shadow-sm lg:p-8">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-gold-50 text-gold-700"><Icon name="message-square-text" size={24} /></div>
+          <h3 class="mb-2">Text</h3>
+          <a href={smsHref()} aria-label={textAria(phoneDisplay)} aria-describedby="sms-hint" class={numberClass}>{phoneDisplay}</a>
+          <p class="mb-6 mt-3 text-muted">Send photos and your ZIP code for a free estimate.</p>
+          <TextButton label="Text Us" />
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  {showHours && (
+    <Section tone={tone.hours} labelledby="hours-heading">
+      <Container>
+        <SectionHeader id="hours-heading" heading="Hours" />
+        <div class="flex items-start gap-3 text-ink">
+          <Icon name="clock" size={24} class="mt-0.5 shrink-0 text-gold-700" />
+          <p set:html={renderInline(site.hours.display)} />
+        </div>
+      </Container>
+    </Section>
+  )}
+
+  <Section tone={tone.area} labelledby="area-heading">
+    <Container>
+      <SectionHeader id="area-heading" heading="Service Area" lead="We clean homes across the whole Las Vegas Valley." />
+      <ul data-reveal class="flex flex-wrap gap-3">
+        {areas.map((a) => <li><AreaChip area={a} /></li>)}
+      </ul>
+      <p class="mt-8"><Button variant="link" href={withBase('/service-areas')}>All service areas</Button></p>
+    </Container>
+  </Section>
+
+  <TextEstimatePanel tone={tone.panel} heading="Send Photos for a Faster Estimate" />
+</BaseLayout>

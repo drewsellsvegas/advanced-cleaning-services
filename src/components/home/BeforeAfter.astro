@@ -1,0 +1,86 @@
+---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import Icon from '../ui/Icon.astro';
+import { renderInline } from '../../lib/text';
+import { getService } from '../../lib/data';
+import { visibleBeforeAfter } from '../../lib/sections';
+
+// Before/after slider (PLAN 6.5). Renders only when a real (placeholder:false) entry exists; dev also shows placeholders.
+// Mechanics: transform only. A native range input sits over the image at opacity 0 (keyboard, touch and mouse for free).
+interface Props { tone?: 'white' | 'cream' }
+const { tone = 'white' } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/photos/**/*.{jpg,jpeg,png,webp}', { eager: true });
+const load = (path: string) => images['/' + path.replace(/^\//, '')]?.default;
+
+const entry = visibleBeforeAfter()[0];
+const before = entry && load(entry.before);
+const after = entry && load(entry.after);
+const service = entry && (await getService(entry.service));
+const show = Boolean(entry && before && after);
+const sizes = '(min-width: 1024px) 960px, 100vw';
+const widths = [480, 768, 960, 1280];
+const chip = 'absolute top-3 z-10 rounded-full bg-white/95 px-3 py-1 text-[13px] font-semibold leading-none text-ink shadow-sm';
+---
+{show && entry && before && after && (
+  <Section tone={tone} labelledby="ba-heading">
+    <Container>
+      <SectionHeader id="ba-heading" eyebrow="Real results" heading="See the Difference" />
+      <figure data-before-after class="mx-auto max-w-[60rem]" data-reveal="lift">
+        <div class="relative aspect-[4/3] select-none overflow-hidden rounded-xl bg-cream">
+          <Picture src={before} alt={entry.altBefore} formats={['avif', 'webp']} widths={widths} sizes={sizes} loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover" />
+          <div class="ba-after absolute inset-0 overflow-hidden" style="transform:translateX(-50%)">
+            <div class="ba-after-inner absolute inset-0" style="transform:translateX(50%)">
+              <Picture src={after} alt={entry.altAfter} formats={['avif', 'webp']} widths={widths} sizes={sizes} loading="lazy" decoding="async" class="h-full w-full object-cover" />
+            </div>
+          </div>
+          <span class:list={[chip, 'left-3']}>Before</span>
+          <span class:list={[chip, 'right-3']}>After</span>
+          <div class="ba-handle pointer-events-none absolute inset-0 z-10" style="transform:translateX(-50%)" aria-hidden="true">
+            <span class="absolute inset-y-0 right-0 w-0.5 bg-white shadow-sm"></span>
+            <span class="absolute right-0 top-1/2 flex h-11 w-11 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-white text-ink shadow-md">
+              <Icon name="chevrons-left-right" size={20} />
+            </span>
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value="50"
+            aria-label="Compare before and after"
+            class="ba-range absolute inset-0 z-20 h-full w-full cursor-ew-resize opacity-0"
+          />
+        </div>
+        <figcaption class="mt-4 text-center text-small text-muted">
+          <span set:html={renderInline(entry.caption)} />{service && <span> · {service.name}</span>}
+        </figcaption>
+      </figure>
+    </Container>
+  </Section>
+)}
+<style is:global>
+  [data-before-after]:has(.ba-range:focus-visible) .ba-handle > span:last-child { outline: 2px solid var(--color-gold-700); outline-offset: 3px; }
+</style>
+<script>
+  // Moves two wrappers and the handle with transform only; no layout properties.
+  document.querySelectorAll<HTMLElement>('[data-before-after]').forEach((root) => {
+    const input = root.querySelector<HTMLInputElement>('.ba-range');
+    const after = root.querySelector<HTMLElement>('.ba-after');
+    const inner = root.querySelector<HTMLElement>('.ba-after-inner');
+    const handle = root.querySelector<HTMLElement>('.ba-handle');
+    if (!input || !after || !inner || !handle) return;
+    const set = () => {
+      const rest = 100 - Number(input.value);
+      after.style.transform = `translateX(-${rest}%)`;
+      inner.style.transform = `translateX(${rest}%)`;
+      handle.style.transform = `translateX(-${rest}%)`;
+    };
+    input.addEventListener('input', set);
+    set();
+  });
+</script>

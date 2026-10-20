@@ -1,0 +1,28 @@
+---
+import Container from './Container.astro';
+// Eyebrow + heading + lead block (PLAN 3.6). Gaps: 12px eyebrow>heading, 16px heading>lead,
+// 40px (56px lg) below the block. Colors adapt when placed on a night section via `tone`.
+import { renderInline } from '../../lib/text';
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  level?: 1 | 2 | 3;
+  lead?: string;
+  align?: 'left' | 'center';
+  tone?: 'light' | 'night';
+  id?: string;
+  reveal?: boolean;
+  class?: string;
+}
+const { eyebrow, heading, level = 2, lead, align = 'left', tone = 'light', id, reveal = true, class: className } = Astro.props;
+const Heading = `h${level}` as 'h2';
+const night = tone === 'night';
+---
+<div
+  data-reveal={reveal ? '' : undefined}
+  class:list={['mb-10 lg:mb-14', align === 'center' && 'mx-auto text-center', className]}
+>
+  {eyebrow && <p class:list={['eyebrow mb-3', night && 'text-gold-500!']}>{eyebrow}</p>}
+  <Heading id={id} class:list={[night && 'text-white', align === 'center' && 'mx-auto']} set:html={renderInline(heading)} />
+  {lead && <p class:list={['lead mt-4', night && 'text-night-text!', align === 'center' && 'mx-auto']} set:html={renderInline(lead)} />}
+</div>

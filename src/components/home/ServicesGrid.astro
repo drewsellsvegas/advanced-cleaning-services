@@ -1,0 +1,30 @@
+---
+import { withBase } from '../../lib/paths';
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import ServiceCard from '../ui/ServiceCard.astro';
+import Button from '../ui/Button.astro';
+import { getServices } from '../../lib/data';
+
+// Services grid (PLAN 6.3): all 12 services in table 1.2 order.
+interface Props { tone?: 'white' | 'cream' }
+const { tone = 'white' } = Astro.props;
+const services = await getServices();
+---
+<Section tone={tone} labelledby="services-heading">
+  <Container>
+    <SectionHeader
+      id="services-heading"
+      eyebrow="What we clean"
+      heading="Cleaning Services for Every Surface in Your Home"
+      lead="From everyday carpet care to grout, rugs, upholstery and the concrete outside, one call covers it."
+    />
+    <div class="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
+      {services.map((s, i) => <ServiceCard service={s} index={i % 3} />)}
+    </div>
+    <div class="mt-10 flex justify-center lg:mt-14">
+      <Button variant="outline" href={withBase('/services')}>View all services</Button>
+    </div>
+  </Container>
+</Section>

@@ -1,0 +1,60 @@
+---
+import { withBase, isPreview } from '../../lib/paths';
+import { Font } from 'astro:assets';
+import site from '../../data/site.json';
+import { absUrl } from '../../lib/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+const { title, description, path, ogImage, noindex = false } = Astro.props;
+const canonical = absUrl(path);
+const image = ogImage ?? absUrl('/og-default.jpg'); // absUrl already includes the base path
+const imageAlt = 'Advanced Cleaning Services logo, Las Vegas carpet and tile cleaning';
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Adds .js before CSS so reveal styles only apply when scripts run (PLAN 4.2). -->
+<script is:inline>document.documentElement.classList.add('js')</script>
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{isPreview
+  ? <meta name="robots" content="noindex, nofollow" />
+  : noindex && <meta name="robots" content="noindex, follow" />}
+<meta name="theme-color" content="#FFFFFF" />
+
+<link rel="icon" href={withBase('/favicon.ico')} sizes="32x32" />
+<link rel="icon" type="image/png" sizes="32x32" href={withBase('/favicon-32.png')} />
+<link rel="icon" type="image/png" sizes="16x16" href={withBase('/favicon-16.png')} />
+<link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
+<link rel="manifest" href={withBase('/site.webmanifest')} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={imageAlt} />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<meta name="twitter:image:alt" content={imageAlt} />
+
+<!-- Preload only the latin 400 (body) and 800 (display headings) files; other weights load on demand. -->
+<Font
+  cssVariable="--font-jakarta"
+  preload={[
+    { weight: 400, style: 'normal', subset: 'latin' },
+    { weight: 800, style: 'normal', subset: 'latin' }
+  ]}
+/>

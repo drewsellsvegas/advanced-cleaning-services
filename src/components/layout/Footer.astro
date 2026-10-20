@@ -1,0 +1,142 @@
+---
+import { withBase } from '../../lib/paths';
+import { Picture } from 'astro:assets';
+import logo from '../../assets/brand/logo-horizontal.png';
+import Container from '../ui/Container.astro';
+import Icon from '../ui/Icon.astro';
+import { getAreas, getServicesByGroup } from '../../lib/data';
+import { telHref, smsHref, phoneDisplay, callAria } from '../../lib/contact';
+import { isSet, showOptional } from '../../lib/placeholder';
+import { renderInline } from '../../lib/text';
+import site from '../../data/site.json';
+
+// Footer (PLAN 3.15). Optional rows (hours, email, GBP, social, license) are hidden in production until set;
+// in `astro dev` they show with the yellow placeholder mark. `#footer-nav` is the no-JS target of the menu button.
+const groups = await getServicesByGroup();
+const areas = await getAreas();
+const byGroup = Object.fromEntries(groups.map((g) => [g.group, g.services]));
+const year = new Date().getFullYear();
+const social = Object.entries(site.social as Record<string, string>).filter(([, url]) => showOptional(url));
+const heading = 'eyebrow mb-3 text-ink!';
+const list = 'space-y-0.5';
+const row = 'flex items-start gap-2.5';
+---
+<footer data-menu-inert class="border-t border-line bg-cream pb-8 pt-16 lg:pb-10 lg:pt-24">
+  <Container>
+    <div id="footer-nav" class="grid scroll-mt-24 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      <!-- Brand block -->
+      <div>
+        <a href={withBase('/')} aria-label={`${site.name} home`} class="inline-block">
+          <Picture
+            src={logo}
+            alt=""
+            formats={['avif', 'webp']}
+            widths={[200, 400]}
+            sizes="200px"
+            width={200}
+            height={40}
+            loading="lazy"
+            decoding="async"
+            class="h-10 w-auto"
+          />
+        </a>
+        <p class="mt-4 max-w-[34ch] text-muted">Carpet, tile, upholstery and exterior cleaning for homes across the Las Vegas Valley.</p>
+        <ul class="mt-5 space-y-3 text-[0.9375rem]">
+          <li class={row}>
+            <Icon name="phone" size={20} class="mt-0.5 shrink-0 text-gold-700" />
+            <a href={telHref()} aria-label={callAria(phoneDisplay)} class="font-semibold text-ink hover:underline">{phoneDisplay}</a>
+          </li>
+          <li class={row}>
+            <Icon name="message-square-text" size={20} class="mt-0.5 shrink-0 text-gold-700" />
+            <a href={smsHref()} aria-describedby="sms-hint" class="font-semibold text-ink hover:underline">Text {phoneDisplay}</a>
+          </li>
+          {showOptional(site.hours.display) && (
+            <li class={row}>
+              <Icon name="clock" size={20} class="mt-0.5 shrink-0 text-gold-700" />
+              <span class="text-muted" set:html={renderInline(site.hours.display)} />
+            </li>
+          )}
+          {showOptional(site.email) && (
+            <li class={row}>
+              <Icon name="mail" size={20} class="mt-0.5 shrink-0 text-gold-700" />
+              {isSet(site.email) ? (
+                <a href={`mailto:${site.email}`} class="text-muted hover:text-ink hover:underline">{site.email}</a>
+              ) : (
+                <span class="text-muted" set:html={renderInline(site.email)} />
+              )}
+            </li>
+          )}
+          {showOptional(site.googleBusinessProfileUrl) && (
+            <li class={row}>
+              <Icon name="map-pin" size={20} class="mt-0.5 shrink-0 text-gold-700" />
+              {isSet(site.googleBusinessProfileUrl) ? (
+                <a href={site.googleBusinessProfileUrl} rel="noopener" class="text-muted hover:text-ink hover:underline">Google Business Profile</a>
+              ) : (
+                <span class="text-muted" set:html={renderInline(site.googleBusinessProfileUrl)} />
+              )}
+            </li>
+          )}
+          {social.map(([name, url]) => (
+            <li class={row}>
+              <Icon name="arrow-right" size={20} class="mt-0.5 shrink-0 text-gold-700" />
+              <a href={url} rel="noopener me" class="capitalize text-muted hover:text-ink hover:underline">{name}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <nav aria-label="Footer" class="contents">
+        <!-- Services: two stacked groups -->
+        <div>
+          <h2 class={heading}>Carpet &amp; Upholstery</h2>
+          <ul class={list}>
+            {byGroup['Carpet & Upholstery'].map((s) => (
+              <li><a href={withBase(`/services/${s.slug}`)} class="footer-link">{s.name}</a></li>
+            ))}
+          </ul>
+          <h2 class={`${heading} mt-8`}>Tile &amp; Water</h2>
+          <ul class={list}>
+            {byGroup['Tile & Water'].map((s) => (
+              <li><a href={withBase(`/services/${s.slug}`)} class="footer-link">{s.name}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Exterior services + company -->
+        <div>
+          <h2 class={heading}>Exterior &amp; Garage</h2>
+          <ul class={list}>
+            {byGroup['Exterior & Garage'].map((s) => (
+              <li><a href={withBase(`/services/${s.slug}`)} class="footer-link">{s.name}</a></li>
+            ))}
+          </ul>
+          <h2 class={`${heading} mt-8`}>Company</h2>
+          <ul class={list}>
+            <li><a href={withBase('/free-estimate')} class="footer-link">Free Estimate</a></li>
+            <li><a href={withBase('/about')} class="footer-link">About</a></li>
+            <li><a href={withBase('/contact')} class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Areas -->
+        <div>
+          <h2 class={heading}>Service Areas</h2>
+          <ul class={list}>
+            {areas.map((a) => (
+              <li><a href={withBase(`/service-areas/${a.slug}`)} class="footer-link">{a.name}</a></li>
+            ))}
+          </ul>
+          <a href={withBase('/service-areas')} class="btn btn-link mt-3 text-[0.9375rem]">All service areas<Icon name="arrow-right" size={16} class="btn-arrow" /></a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-2 border-t border-line pt-6 text-small text-subtle sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4">
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <a href={withBase('/privacy')} class="underline underline-offset-[3px] hover:text-ink">Privacy</a>
+      {showOptional(site.licenseNumber) && (
+        <p>NV License #<span set:html={renderInline(site.licenseNumber)} /></p>
+      )}
+    </div>
+  </Container>
+</footer>

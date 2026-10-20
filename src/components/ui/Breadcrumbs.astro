@@ -1,0 +1,27 @@
+---
+import { withBase } from '../../lib/paths';
+import Icon from './Icon.astro';
+import type { Crumb } from '../../lib/schema';
+// Visible breadcrumb trail. The last item is the current page (no link, aria-current).
+// BreadcrumbList JSON-LD is produced by BaseLayout from the same `breadcrumbs` prop.
+interface Props {
+  crumbs: Crumb[];
+  class?: string;
+}
+const { crumbs, class: className } = Astro.props;
+---
+import { withBase } from '../../lib/paths';
+<nav aria-label="Breadcrumb" class={className}>
+  <ol class="flex flex-wrap items-center gap-x-2 gap-y-1 text-small text-muted">
+    {crumbs.map((c, i) => (
+      <li class="flex items-center gap-2">
+        {i > 0 && <span aria-hidden="true" class="text-subtle">/</span>}
+        {i === crumbs.length - 1 ? (
+          <span aria-current="page" class="text-ink">{c.name}</span>
+        ) : (
+          <a href={withBase(c.path)} class="underline decoration-1 underline-offset-[3px] hover:text-ink">{c.name}</a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

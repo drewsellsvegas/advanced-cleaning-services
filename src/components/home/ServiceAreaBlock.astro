@@ -1,0 +1,43 @@
+---
+import { withBase } from '../../lib/paths';
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import AreaChip from '../ui/AreaChip.astro';
+import Icon from '../ui/Icon.astro';
+import Button from '../ui/Button.astro';
+import TextButton from '../ui/TextButton.astro';
+import { getAreas } from '../../lib/data';
+
+// Service area block (PLAN 6.10). Chips for all 10 areas (Las Vegas first, highlighted), no map embed.
+interface Props { tone?: 'white' | 'cream' }
+const { tone = 'cream' } = Astro.props;
+const areas = await getAreas();
+---
+<Section tone={tone} labelledby="areas-heading">
+  <Container>
+    <SectionHeader
+      id="areas-heading"
+      eyebrow="Service area"
+      heading="Serving the Entire Las Vegas Valley"
+      lead="We clean homes in every corner of the Valley. Pick your area to see what we do there."
+    />
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
+      <div class="lg:col-span-7">
+        <ul data-reveal class="flex flex-wrap gap-3">
+          {areas.map((a) => (
+            <li><AreaChip area={a} class={a.isMain ? 'bg-gold-50! border-gold-100!' : undefined} /></li>
+          ))}
+        </ul>
+        <p class="mt-8"><Button variant="link" href={withBase('/service-areas')}>All service areas</Button></p>
+      </div>
+      <div class="lg:col-span-5">
+        <div class="rounded-lg border border-line bg-white p-6 shadow-sm">
+          <Icon name="map-pin" size={28} class="mb-4 text-gold-700" />
+          <p class="mb-5 text-lg font-semibold text-ink">Not sure if you're in our area? Text us your ZIP code.</p>
+          <TextButton />
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>

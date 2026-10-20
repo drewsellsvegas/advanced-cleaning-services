@@ -1,0 +1,42 @@
+---
+import Icon from './Icon.astro';
+// Buttons per PLAN 3.8. Renders <a> when `href` is set, otherwise <button>.
+// Hover is a transform plus an overlay whose opacity changes (see .btn in global.css).
+interface Props {
+  variant?: 'primary' | 'dark' | 'outline' | 'ghost-light' | 'link';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  icon?: string;
+  /** Icon after the label (used by the link variant, default arrow-right there). */
+  iconAfter?: string;
+  type?: 'button' | 'submit';
+  class?: string;
+  [attr: string]: unknown;
+}
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  icon,
+  iconAfter = variant === 'link' ? 'arrow-right' : undefined,
+  type = 'button',
+  class: className,
+  ...rest
+} = Astro.props;
+const classes = [
+  'btn',
+  `btn-${variant}`,
+  size === 'lg' && variant !== 'link' && 'btn-lg',
+  size === 'sm' && variant !== 'link' && 'btn-sm',
+  className
+];
+---
+{href !== undefined ? (
+  <a href={href} class:list={classes} {...rest}>
+    {icon && <Icon name={icon} size={20} />}<slot />{iconAfter && <Icon name={iconAfter} size={20} class="btn-arrow" />}
+  </a>
+) : (
+  <button type={type} class:list={classes} {...rest}>
+    {icon && <Icon name={icon} size={20} />}<slot />{iconAfter && <Icon name={iconAfter} size={20} class="btn-arrow" />}
+  </button>
+)}

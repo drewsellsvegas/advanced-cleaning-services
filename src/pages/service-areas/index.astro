@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/page/PageIntro.astro';
+import Container from '../../components/ui/Container.astro';
+import Section from '../../components/ui/Section.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+import AreaCard from '../../components/ui/AreaCard.astro';
+import TextButton from '../../components/ui/TextButton.astro';
+import TextEstimatePanel from '../../components/home/TextEstimatePanel.astro';
+import CtaBand from '../../components/home/CtaBand.astro';
+import { getAreas } from '../../lib/data';
+
+// Service areas hub (PLAN 2.3 / task 26). Title, meta and H1 are the exact strings from 2.3.
+const title = 'Areas We Serve in the Las Vegas Valley | Advanced Cleaning';
+const description =
+  'We clean homes across the Las Vegas Valley, from Summerlin and Centennial Hills to Henderson and Boulder City. Call or text 702-350-5775.';
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Service Areas', path: '/service-areas' }
+];
+const areas = await getAreas();
+---
+<BaseLayout title={title} description={description} path="/service-areas" breadcrumbs={crumbs}>
+  <PageIntro
+    crumbs={crumbs}
+    h1="Serving the Entire Las Vegas Valley"
+    lead="We clean homes from Summerlin and Centennial Hills to Henderson and Boulder City. Pick your area to see what we do there."
+    tight
+  />
+  <Section tone="cream" labelledby="areas-heading">
+    <Container>
+      <SectionHeader id="areas-heading" heading="Cities and Communities We Serve" />
+      <div class="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
+        {areas.map((a, i) => <AreaCard area={a} index={i % 3} />)}
+      </div>
+    </Container>
+  </Section>
+  <Section tone="white" labelledby="neighborhood-heading">
+    <Container>
+      <div class="mx-auto max-w-[45rem] text-center" data-reveal>
+        <h2 id="neighborhood-heading" class="mx-auto">Don't See Your Neighborhood?</h2>
+        <p class="lead mx-auto mt-4">We cover the whole Las Vegas Valley. Text us your ZIP code and we'll confirm.</p>
+        <div class="mt-8 flex justify-center"><TextButton size="lg" /></div>
+      </div>
+    </Container>
+  </Section>
+  <TextEstimatePanel tone="cream" heading="Get a Free Estimate by Text" />
+  <CtaBand />
+</BaseLayout>

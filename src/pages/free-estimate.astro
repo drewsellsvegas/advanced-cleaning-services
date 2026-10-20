@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/page/PageIntro.astro';
+import Container from '../components/ui/Container.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import StepCard from '../components/ui/StepCard.astro';
+import Icon from '../components/ui/Icon.astro';
+import CallButton from '../components/ui/CallButton.astro';
+import TextButton from '../components/ui/TextButton.astro';
+import { getAreas, getServices } from '../lib/data';
+import { phoneDisplay, phoneE164 } from '../lib/contact';
+
+// Free estimate page + SMS composer (PLAN 2.3 / task 27). No form ever submits to a server.
+const title = 'Free Cleaning Estimate by Text | Advanced Cleaning';
+const description =
+  'Text a few photos to 702-350-5775 and Miguel will reply with a free estimate for your Las Vegas carpet, tile or exterior cleaning.';
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Free Estimate', path: '/free-estimate' }
+];
+const [services, areas] = await Promise.all([getServices(), getAreas()]);
+// Same three steps as the home text-estimate panel (PLAN 6.4); step 3 omits the reply time until Q5 answers it.
+const steps = [
+  { title: 'Take 2–4 photos', text: 'Wide shots of the room or area, plus close-ups of any stains or problem spots.' },
+  { title: 'Text them with your ZIP', text: 'Add a quick note about what you want cleaned and roughly how big the area is.' },
+  { title: 'Get your estimate', text: 'Miguel reviews the photos and replies by text with your estimate.' }
+];
+const photos = [
+  'A wide shot of each room or area',
+  'Close-ups of stains or damage',
+  'The care tag on upholstery',
+  "The rug's label, if it has one",
+  'The whole driveway or patio, from the street or a corner'
+];
+---
+<BaseLayout title={title} description={description} path="/free-estimate" breadcrumbs={crumbs}>
+  <PageIntro
+    crumbs={crumbs}
+    h1="Free Cleaning Estimates in Las Vegas, by Text"
+    lead="The fastest way to a price is a few photos. Here's how it works."
+  >
+    <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+      <TextButton size="lg" label="Text Photos Now" icon="camera" />
+      <CallButton size="lg" variant="outline" label={`Call ${phoneDisplay}`} />
+    </div>
+  </PageIntro>
+
+  <Section tone="cream" labelledby="how-heading">
+    <Container>
+      <SectionHeader id="how-heading" heading="How Text Estimates Work" />
+      <ol class="grid gap-8 lg:grid-cols-3 lg:gap-10">
+        {steps.map((s, i) => (
+          <li><StepCard number={i + 1} title={s.title} text={s.text} index={i} last={i === steps.length - 1} /></li>
+        ))}
+      </ol>
+    </Container>
+  </Section>
+
+  <Section tone="white" id="composer" labelledby="composer-heading">
+    <Container>
+      <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
+        <div class="lg:col-span-5">
+          <SectionHeader id="composer-heading" heading="Build Your Text Message" lead="Fill in what you know, then open a text with the message ready. You add the photos." />
+        </div>
+        <div class="lg:col-span-7">
+          <!-- Without JavaScript the composer cannot work, so the plain buttons are shown instead. -->
+          <div class="no-js-only rounded-lg border border-line bg-cream p-6">
+            <p class="mb-5 text-ink">Use these buttons to open a text or call us. Add your photos, your ZIP code and what you want cleaned.</p>
+            <div class="flex flex-col gap-3 sm:flex-row"><TextButton label="Text Photos Now" icon="camera" /><CallButton variant="outline" label={`Call ${phoneDisplay}`} /></div>
+          </div>
+          <form id="composer-form" class="js-only space-y-5" data-phone={phoneE164} novalidate>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="f-service" class="field-label">Service</label>
+                <select id="f-service" name="service" class="field">
+                  <option value="">Choose a service</option>
+                  {services.map((s) => <option value={s.slug}>{s.name}</option>)}
+                  <option value="other">Something else</option>
+                </select>
+              </div>
+              <div>
+                <label for="f-area" class="field-label">Area</label>
+                <select id="f-area" name="area" class="field">
+                  <option value="">Choose your area</option>
+                  {areas.map((a) => <option value={a.slug}>{a.name}</option>)}
+                  <option value="other">Other / not sure</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="f-size" class="field-label">Roughly how big is the area? <span class="font-normal text-muted">(optional)</span></label>
+              <input id="f-size" name="size" type="text" class="field" autocomplete="off" />
+            </div>
+            <div>
+              <label for="f-notes" class="field-label">Anything else Miguel should know? <span class="font-normal text-muted">(optional)</span></label>
+              <textarea id="f-notes" name="notes" class="field"></textarea>
+            </div>
+            <div>
+              <p id="preview-label" class="field-label">Your message</p>
+              <div id="composer-preview" role="group" aria-labelledby="preview-label" class="whitespace-pre-line rounded-md border border-gold-100 bg-gold-50 p-4 text-ink"></div>
+            </div>
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <button type="button" id="composer-open" class="btn btn-primary btn-lg" aria-describedby="sms-hint">
+                <Icon name="message-square-text" size={20} />Open my text messages
+              </button>
+              <button type="button" id="composer-copy" class="btn btn-outline btn-lg">Copy message</button>
+              <p id="composer-status" role="status" aria-live="polite" class="text-small font-semibold text-ink"></p>
+            </div>
+            <p class="text-small text-subtle">Nothing is sent from this page. Your phone's messaging app opens with the message ready, and you add the photos.</p>
+          </form>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="cream" labelledby="photos-heading">
+    <Container>
+      <SectionHeader id="photos-heading" heading="What Photos to Send" />
+      <ul class="grid gap-4 md:grid-cols-2 md:gap-x-12">
+        {photos.map((p, i) => (
+          <li data-reveal style={`--i:${i % 4}`} class="flex items-start gap-3 text-ink">
+            <Icon name="camera" size={24} class="mt-0.5 shrink-0 text-gold-700" />{p}
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </Section>
+
+  <Section tone="white" labelledby="talk-heading">
+    <Container>
+      <div data-reveal>
+        <h2 id="talk-heading">Prefer to Talk? Call Us</h2>
+        <p class="lead mt-4">Call Miguel and describe what you need.</p>
+        <div class="mt-8"><CallButton size="lg" label={`Call ${phoneDisplay}`} /></div>
+      </div>
+    </Container>
+  </Section>
+
+  <script>
+    import '../scripts/composer.ts';
+  </script>
+</BaseLayout>

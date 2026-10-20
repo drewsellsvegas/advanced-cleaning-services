@@ -1,0 +1,99 @@
+---
+import { withBase } from '../lib/paths';
+import { Picture } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/page/PageIntro.astro';
+import Container from '../components/ui/Container.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import FeatureCard from '../components/ui/FeatureCard.astro';
+import AreaChip from '../components/ui/AreaChip.astro';
+import Button from '../components/ui/Button.astro';
+import Prose from '../components/ui/Prose.astro';
+import CtaBand from '../components/home/CtaBand.astro';
+import { getAreas } from '../lib/data';
+import { showOptional } from '../lib/placeholder';
+import { realImage } from '../lib/images';
+import site from '../data/site.json';
+
+// About (PLAN 2.3 / task 28). Noindex while site.aboutReady is false (the sitemap filter reads the same flag).
+const title = 'About Advanced Cleaning Services | Las Vegas, NV';
+const description =
+  'Meet Miguel and Advanced Cleaning Services, serving homes across the Las Vegas Valley. Call or text 702-350-5775 for a free estimate.';
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'About', path: '/about' }
+];
+const areas = await getAreas();
+
+// Q6 is unanswered: the story text is a placeholder, so "Meet Miguel" is dev-only; the portrait is a placeholder photo too.
+const story = ['[PLACEHOLDER: about Miguel — background, why he started the business, how he works]'];
+const showStory = story.some((p) => showOptional(p));
+const portrait = realImage({ src: 'src/assets/photos/about/miguel.jpg', placeholder: true });
+
+const points = [
+  { icon: 'clipboard-check', title: 'Free estimates', text: 'Asking for a price costs nothing. Tell us what needs cleaning and we will quote it.' },
+  { icon: 'message-square-text', title: 'Estimates by text', text: 'Text Miguel photos of the job and he replies with an estimate, with no in-home visit needed first.' },
+  { icon: 'map', title: 'Serving the whole Valley', text: 'We come to homes across the Las Vegas Valley, from Centennial Hills to Anthem and Boulder City.' }
+];
+const sequence = [showStory && 'meet', 'how', 'where'].filter(Boolean) as string[];
+const tone = Object.fromEntries(sequence.map((k, i) => [k, i % 2 === 0 ? 'cream' : 'white'])) as Record<string, 'white' | 'cream'>;
+---
+<BaseLayout title={title} description={description} path="/about" breadcrumbs={crumbs} noindex={!site.aboutReady}>
+  <PageIntro
+    crumbs={crumbs}
+    h1="About Advanced Cleaning Services"
+    lead="A local Las Vegas Valley cleaning company run by its owner, Miguel."
+    tight
+  />
+
+  {showStory && (
+    <Section tone={tone.meet} labelledby="meet-heading">
+      <Container>
+        <div class:list={['grid gap-10 lg:gap-12', portrait && 'lg:grid-cols-12']}>
+          <div class:list={[portrait && 'lg:col-span-7']}>
+            <SectionHeader id="meet-heading" heading="Meet Miguel" />
+            <Prose paragraphs={story} />
+          </div>
+          {portrait && (
+            <div class="lg:col-span-5">
+              <Picture
+                src={portrait}
+                alt="Miguel, owner of Advanced Cleaning Services"
+                formats={['avif', 'webp']}
+                widths={[400, 640, 900]}
+                sizes="(min-width: 1024px) 460px, 100vw"
+                loading="lazy"
+                decoding="async"
+                class="aspect-[4/5] h-auto w-full rounded-xl object-cover"
+              />
+            </div>
+          )}
+        </div>
+      </Container>
+    </Section>
+  )}
+
+  <Section tone={tone.how} labelledby="how-heading">
+    <Container>
+      <SectionHeader id="how-heading" heading="How We Work" />
+      <div class="grid gap-4 md:grid-cols-3 md:gap-6 lg:gap-8">
+        {points.map((p, i) => (
+          <FeatureCard icon={p.icon} title={p.title} text={p.text} index={i} onCream={tone.how === 'cream'} />
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone={tone.where} labelledby="where-heading">
+    <Container>
+      <SectionHeader id="where-heading" heading="Where We Work" lead="We clean homes in every corner of the Valley. Pick your area to see what we do there." />
+      <ul data-reveal class="flex flex-wrap gap-3">
+        {areas.map((a) => <li><AreaChip area={a} /></li>)}
+      </ul>
+      <p class="mt-8"><Button variant="link" href={withBase('/service-areas')}>All service areas</Button></p>
+    </Container>
+  </Section>
+
+  <CtaBand heading="Get in Touch" />
+</BaseLayout>

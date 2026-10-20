@@ -1,0 +1,85 @@
+---
+import { withBase } from '../../lib/paths';
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import Icon from '../ui/Icon.astro';
+import CallButton from '../ui/CallButton.astro';
+import TextButton from '../ui/TextButton.astro';
+import Button from '../ui/Button.astro';
+import { phoneDisplay, telHref, callAria } from '../../lib/contact';
+import { isSet } from '../../lib/placeholder';
+import { renderInline } from '../../lib/text';
+
+// Home hero (PLAN 6.1). The H1 is the LCP element and is never animated or hidden.
+// Lead, buttons and bullets use the on-load .hero-in keyframe; the image panel never animates, the example card fades up.
+// No real hero photo exists yet (placeholder), so the gold-50 panel with the example-text card is shown (PLAN 8).
+// To use a real photo later: add `import { Picture } from 'astro:assets'`, render a 4:5 <Picture> (eager, fetchpriority high,
+// widths 400/640/960/1200, sizes "(min-width: 1024px) 480px, 100vw") in place of the panel, and keep the card overlapping its corner.
+const heroPhotoIsPlaceholder = true;
+
+// [PLACEHOLDER: Miguel's typical reply, ...] (Q5). Shown highlighted in dev; omitted in production until the client supplies it.
+const reply = "[PLACEHOLDER: Miguel's typical reply, e.g. 'Thanks! I'll send your estimate shortly.']";
+const showReply = isSet(reply) || import.meta.env.DEV;
+
+const bullets = ['Free estimates', 'Send photos by text', 'Serving the entire Valley'];
+---
+<Section tone="white" padding="hero" labelledby="hero-heading">
+  <Container>
+    <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
+      <div class="lg:col-span-7">
+        <p class="eyebrow mb-4">Las Vegas Valley · Carpet, Tile &amp; More</p>
+        <h1 id="hero-heading" class="text-display-h1">Las Vegas Carpet &amp; Tile Cleaning, Done with Care</h1>
+        <p class="lead hero-in mt-5 max-w-[40ch] md:max-w-[52ch]" style="--hero-i:1">
+          Carpet, rugs, upholstery, tile, grout and exterior surfaces, cleaned by a local team that treats your home like their own. Text Miguel a few photos for a free estimate.
+        </p>
+        <div class="hero-in mt-7" style="--hero-i:2">
+          <div class="flex gap-3 sm:flex-wrap">
+            <CallButton size="lg" class="flex-1 sm:flex-none" />
+            <TextButton size="lg" class="flex-1 sm:flex-none" />
+          </div>
+          <p class="mt-3 hidden text-small text-subtle lg:block">
+            On a computer? Text <a href={telHref()} aria-label={callAria(phoneDisplay)} class="underline underline-offset-2 hover:text-ink">{phoneDisplay}</a> from your phone.
+          </p>
+        </div>
+        <div class="hero-in mt-8" style="--hero-i:3">
+          <ul class="flex flex-col gap-3 md:flex-row md:flex-wrap md:gap-x-7">
+            {bullets.map((b) => (
+              <li class="flex items-center gap-2.5 font-semibold text-ink">
+                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold-50 text-gold-700">
+                  <Icon name="check" size={16} />
+                </span>
+                {b}
+              </li>
+            ))}
+          </ul>
+          <Button variant="link" href={withBase('/services')} class="mt-6">See all services</Button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5">
+        {heroPhotoIsPlaceholder && (
+          <div class="flex items-center justify-center rounded-xl border border-gold-100 bg-gold-50 p-6 lg:aspect-[4/5] lg:p-8">
+            <div
+              role="img"
+              aria-label="Example: a customer texts photos to Miguel and gets an estimate by text"
+              class="hero-in w-full max-w-[280px] rounded-lg bg-white p-4 shadow-md"
+              style="--hero-i:3.75; animation-duration:600ms"
+            >
+              <p class="mb-3 text-[13px] leading-snug text-subtle">Example text estimate</p>
+              <div class="ml-auto w-[88%] rounded-lg rounded-br-sm bg-gold-50 p-3 text-[14px] leading-snug text-ink">
+                Hi Miguel, can I get an estimate for my living room carpet? Photos attached.
+                <div class="mt-2 flex gap-2" aria-hidden="true">
+                  <span class="flex h-14 w-14 items-center justify-center rounded-md bg-line text-muted"><Icon name="camera" size={20} /></span>
+                  <span class="flex h-14 w-14 items-center justify-center rounded-md bg-line text-muted"><Icon name="camera" size={20} /></span>
+                </div>
+              </div>
+              {showReply && (
+                <div class="mt-3 w-[88%] rounded-lg rounded-bl-sm bg-cream p-3 text-[14px] leading-snug text-ink" set:html={renderInline(reply)} />
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </Container>
+</Section>

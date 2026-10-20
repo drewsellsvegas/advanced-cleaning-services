@@ -1,0 +1,21 @@
+---
+import { renderInline } from '../../lib/text';
+// Step card (PLAN 3.9): 40px ink circle with the number, H3, muted text.
+// The connecting line on desktop is a static decorative ::after (see .step-card in global.css).
+interface Props {
+  number: number;
+  title: string;
+  text: string;
+  level?: 2 | 3 | 4;
+  index?: number;
+  reveal?: boolean;
+  last?: boolean;
+}
+const { number, title, text, level = 3, index = 0, reveal = true, last = false } = Astro.props;
+const Heading = `h${level}` as 'h3';
+---
+<div class:list={['step-card', last && 'step-card-last']} data-reveal={reveal ? '' : undefined} style={`--i:${index}`}>
+  <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-ink text-base font-bold text-white" aria-hidden="true">{number}</div>
+  <Heading class="mb-2">{title}</Heading>
+  <p class="text-muted" set:html={renderInline(text)} />
+</div>

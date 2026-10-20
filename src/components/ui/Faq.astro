@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+import { renderInline } from '../../lib/text';
+// FAQ accordion (PLAN 3.9) on native <details>/<summary>: keyboard support for free.
+// JSON-LD is built by the page from the same items with faqPage() + stripInline() (see lib/home-faq.ts), so schema text equals visible text.
+interface Props {
+  items: { q: string; a: string }[];
+  /** Optional heading rendered above the list. Omit when the page supplies its own section header. */
+  heading?: string;
+  headingLevel?: 2 | 3;
+  class?: string;
+}
+const { items, heading, headingLevel = 2, class: className } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2';
+---
+<div class={className}>
+  {heading && <Heading class="mb-6">{heading}</Heading>}
+  <div class="border-t border-line">
+    {items.map((item) => (
+      <details class="faq-item">
+        <summary>
+          <span>{item.q}</span>
+          <Icon name="plus" size={24} class="faq-plus" />
+        </summary>
+        <div class="faq-answer"><p set:html={renderInline(item.a)} /></div>
+      </details>
+    ))}
+  </div>
+</div>
