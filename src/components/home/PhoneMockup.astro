@@ -1,70 +1,65 @@
 ---
 import Icon from '../ui/Icon.astro';
 import site from '../../data/site.json';
-import { isSet } from '../../lib/placeholder';
-import { renderInline } from '../../lib/text';
 
-// Hero phone (CSS-drawn, no image). The sent bubble shows the exact default text the "Text" buttons open
-// (site.sms.defaultMessage), so the demo matches what a visitor will really send.
-// Miguel's reply is a placeholder (Q5): shown highlighted in dev; in production a "typing" bubble is shown instead.
+// Hero phone (CSS drawn, no image): a phone showing an example text conversation.
+// The chat is anchored to the bottom of the screen so the top is cropped, like a real thread scrolled to the latest messages.
+// The first (cropped) bubble is the exact default text the "Text" buttons open (site.sms.defaultMessage).
+// No price appears: pricing is not confirmed (PLAN rule: no invented prices). Replies are deliberately generic.
 // Only opacity animates (typing dots); everything else is static.
 interface Props {
   class?: string;
 }
 const { class: className } = Astro.props;
 const sent = site.sms.defaultMessage.trim();
-const reply = "[PLACEHOLDER: Miguel's typical reply, e.g. 'Thanks! I'll send your estimate shortly.']";
-const showReply = isSet(reply) || import.meta.env.DEV;
+const reply = "Thanks for the photos! I'll send your free estimate shortly. What day works for you?";
+const followUp = 'Great, any chance for Monday morning?';
 ---
 <div
   role="img"
-  aria-label={`Phone screen showing a text conversation with Miguel. The customer's message reads: ${sent} Two photos are attached.`}
+  aria-label={`Example text conversation with ${site.phone.display}. The customer writes: ${sent} and attaches four photos. The reply reads: ${reply} The customer answers: ${followUp}`}
   class:list={['phone hero-in mx-auto', className]}
   style="--hero-i:3.5; animation-duration:600ms"
 >
   <div class="phone-body" aria-hidden="true">
     <div class="phone-screen">
       <div class="phone-island"></div>
-      <div class="flex items-center justify-between px-6 pb-1 pt-3 text-[11px] font-semibold text-ink">
-        <span>9:41</span>
-        <span class="flex items-center gap-1 text-muted"><Icon name="phone" size={11} /></span>
-      </div>
-      <div class="flex flex-col items-center border-b border-line px-4 pb-3 pt-2">
-        <span class="flex h-9 w-9 items-center justify-center rounded-full bg-gold-50 text-[13px] font-bold text-gold-700">M</span>
-        <span class="mt-1 text-[12px] font-semibold text-ink">Miguel</span>
-        <span class="text-[10px] text-muted">{site.phone.display}</span>
-      </div>
-      <div class="flex flex-1 flex-col gap-2.5 px-3 py-4">
-        <p class="text-center text-[10px] text-muted">Text Message</p>
+      <div class="px-6 pb-2 pt-12 text-center text-[13px] font-semibold text-ink">{site.phone.display}</div>
+
+      <div class="phone-chat">
         <div class="ml-auto max-w-[88%] rounded-[18px] rounded-br-[4px] bg-gold-500 px-3.5 py-2.5 text-[13px] leading-snug text-ink">
           {sent}
         </div>
-        <div class="ml-auto flex max-w-[88%] gap-1.5">
-          <span class="phone-photo"><Icon name="camera" size={18} /></span>
-          <span class="phone-photo"><Icon name="camera" size={18} /></span>
+        <div class="ml-auto grid w-[78%] grid-cols-2 gap-1.5">
+          <span class="phone-photo"><Icon name="camera" size={20} /></span>
+          <span class="phone-photo phone-photo-b"><Icon name="camera" size={20} /></span>
+          <span class="phone-photo phone-photo-b"><Icon name="camera" size={20} /></span>
+          <span class="phone-photo"><Icon name="camera" size={20} /></span>
         </div>
-        {showReply ? (
-          <div class="max-w-[88%] rounded-[18px] rounded-bl-[4px] bg-cream px-3.5 py-2.5 text-[13px] leading-snug text-ink" set:html={renderInline(reply)} />
-        ) : (
-          <div class="flex w-14 items-center justify-center gap-1 rounded-[18px] rounded-bl-[4px] bg-cream px-3.5 py-3.5">
-            <span class="typing-dot"></span><span class="typing-dot" style="animation-delay:.2s"></span><span class="typing-dot" style="animation-delay:.4s"></span>
-          </div>
-        )}
+        <div class="max-w-[88%] rounded-[18px] rounded-bl-[4px] bg-[#ececec] px-3.5 py-2.5 text-[13px] leading-snug text-ink">
+          {reply}
+        </div>
+        <div class="ml-auto max-w-[80%] rounded-[18px] rounded-br-[4px] bg-gold-500 px-3.5 py-2.5 text-[13px] leading-snug text-ink">
+          {followUp}
+        </div>
       </div>
+
       <div class="flex items-center gap-2 border-t border-line px-3 pb-5 pt-2.5">
-        <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-cream text-muted"><Icon name="camera" size={14} /></span>
-        <span class="flex-1 rounded-full border border-line px-3 py-1.5 text-[11px] text-muted">Text Message</span>
+        <span class="flex-1 rounded-full border border-line bg-cream px-3 py-2 text-[11px] text-muted">Text Message</span>
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink text-white"><Icon name="message-square-text" size={14} /></span>
       </div>
     </div>
+
   </div>
 </div>
 
 <style>
   .phone { width: 100%; max-width: 270px; }
   .phone-body {
+    position: relative;
     background: #111;
     border-radius: 2.6rem;
-    padding: 0.55rem;
+    padding: 0.6rem;
     box-shadow: 0 24px 48px -16px rgb(0 0 0 / 0.28), 0 0 0 1px rgb(0 0 0 / 0.5);
   }
   .phone-screen {
@@ -74,38 +69,36 @@ const showReply = isSet(reply) || import.meta.env.DEV;
     background: #fff;
     border-radius: 2.1rem;
     overflow: hidden;
-    min-height: 500px;
+    height: 520px;
   }
   .phone-island {
     position: absolute;
-    top: 8px;
+    top: 10px;
     left: 50%;
-    width: 72px;
-    height: 20px;
-    margin-left: -36px;
+    width: 78px;
+    height: 22px;
+    margin-left: -39px;
     background: #111;
     border-radius: 999px;
+    z-index: 2;
+  }
+  .phone-chat {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    overflow: hidden;
+    padding: 0 0.75rem 0.9rem;
   }
   .phone-photo {
     display: flex;
-    height: 3.5rem;
-    width: 3.5rem;
+    aspect-ratio: 1 / 1;
     align-items: center;
     justify-content: center;
-    border-radius: 0.75rem;
-    background: #e8e4dc;
+    border-radius: 1rem;
+    background: #e3ddd0;
     color: #6b665c;
   }
-  .typing-dot {
-    height: 6px;
-    width: 6px;
-    border-radius: 999px;
-    background: #8a857a;
-    opacity: 0.35;
-    animation: typing 1.2s ease-in-out infinite;
-  }
-  @keyframes typing {
-    0%, 60%, 100% { opacity: 0.35; }
-    30% { opacity: 1; }
-  }
+  .phone-photo-b { background: #d6d0c4; }
 </style>
